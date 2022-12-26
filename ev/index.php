@@ -32,7 +32,7 @@
 			<?php
 						include 'includes/config.php';
 						$sel = "SELECT * FROM car WHERE AVAILABILITY_FLAG = 'Y'";
-                        $sel1 = "SELECT car_category.COST_PER_DAY FROM car_category join car on car.CAR_CATEGORY_NAME=car_category.CATEGORY_NAME";
+                        $sel1 = "SELECT COST_PER_DAY FROM car";
 						$rs = $conn->query($sel);
                         $rs1 = $conn->query($sel1);
 						while($rws = $rs->fetch_assoc() and $rws1 = $rs1->fetch_assoc() ){
@@ -41,7 +41,7 @@
 					<a href="book_car.php?id=<?php echo $rws['REGISTRATION_NUMBER'] ?>">
 						<img class="thumb" src="cars/<?php echo $rws['image'];?>" width="300" height="200">
 					</a>
-					<span class="price"><?php echo 'RS'.$rws1['COST_PER_DAY'];?></span>
+					<span class="price"><?php echo '₹'.$rws1['COST_PER_DAY'];?></span>
 					<div class="property_details">
 						<h1>
 							<a href="book_car.php?id=<?php echo $rws['REGISTRATION_NUMBER'] ?>"><?php echo 'Car Make>'.$rws['MAKE'];?></a>
