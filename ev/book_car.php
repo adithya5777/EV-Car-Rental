@@ -24,7 +24,6 @@
 
 		<section class="caption">
 			<h2 class="caption" style="text-align: center">Find You Dream Cars For Hire</h2>
-			<h3 class="properties" style="text-align: center">Range Rovers - Mercedes Benz - Landcruisers</h3>
 		</section>
 	</section><!--  end hero section  -->
 
@@ -33,7 +32,7 @@
 			<ul class="properties_list">
 				<?php
 				include 'includes/config.php';
-				$sel = "SELECT * FROM car WHERE car_id = '$_GET[car_id]'";
+				$sel = "SELECT * FROM car WHERE REGISTRATION_NUMBER = '$_GET[id]'";
 				// isset($_GET['REGISTRATION_NUMBER']);
 				// $registrationNumber = $_GET['REGISTRATION_NUMBER'];
 				//  $sel = "SELECT * FROM car WHERE car_id = '$registrationNumber'";
@@ -57,12 +56,12 @@
 						<h1>
 							<a href="book_car.php?id=<?php echo $rws['car_id'] ?>"><?php echo 'Car Make>' . $rws['MAKE']; ?></a>
 						</h1>
-						<h2>Car Name/Model: <span class="property_size"><?php echo $rws['car_name']; ?></span></h2>
+						<h2>Car Name/Model: <span class="property_size"><?php echo $rws['MODEL_NAME']; ?></span></h2>
 					</div>
 				</li>
-				<h3>Proceed to Hire <?php echo $rws['car_name']; ?>. </h3>
+				<h3>Proceed to Hire <?php echo $rws['MODEL_NAME']; ?>. </h3>
 				<?php
-				if (!$_SESSION['email'] && (!$_SESSION['pass'])) {
+				if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])){
 				?>
 					<form method="post">
 						<table>
