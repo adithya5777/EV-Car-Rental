@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2022 at 01:54 PM
+-- Generation Time: Dec 27, 2022 at 03:30 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -122,17 +122,25 @@ INSERT INTO `car_category` (`CATEGORY_NAME`, `NO_OF_LUGGAGE`, `NO_OF_PERSON`) VA
 --
 
 CREATE TABLE `customer_details` (
-  `DL_NUMBER` char(8) NOT NULL,
+  `EMAIL_ID` varchar(30) NOT NULL,
   `FNAME` varchar(25) NOT NULL,
   `MNAME` varchar(15) DEFAULT NULL,
   `LNAME` varchar(25) NOT NULL,
+  `DL_NUMBER` char(8) NOT NULL,
   `PHONE_NUMBER` int(11) NOT NULL,
-  `EMAIL_ID` varchar(30) NOT NULL,
   `STREET` varchar(30) NOT NULL,
   `CITY` varchar(20) NOT NULL,
   `STATE_NAME` varchar(20) NOT NULL,
-  `ZIPCODE` int(11) NOT NULL
+  `ZIPCODE` int(11) NOT NULL,
+  `PASSWORD` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer_details`
+--
+
+INSERT INTO `customer_details` (`EMAIL_ID`, `FNAME`, `MNAME`, `LNAME`, `DL_NUMBER`, `PHONE_NUMBER`, `STREET`, `CITY`, `STATE_NAME`, `ZIPCODE`, `PASSWORD`) VALUES
+('abc1@gmail.com', 'A', 'B', 'C', '123KA4', 9900, 'Randi', 'BKL', 'CHUPCHAPRE', 570008, 'BHOP');
 
 -- --------------------------------------------------------
 
@@ -238,7 +246,8 @@ ALTER TABLE `car_category`
 -- Indexes for table `customer_details`
 --
 ALTER TABLE `customer_details`
-  ADD PRIMARY KEY (`DL_NUMBER`);
+  ADD PRIMARY KEY (`DL_NUMBER`),
+  ADD UNIQUE KEY `EMAIL_ID` (`EMAIL_ID`);
 
 --
 -- Indexes for table `location_details`

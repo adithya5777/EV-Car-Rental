@@ -27,7 +27,7 @@
 								<li><a href="status.php">View Status</a></li>
 								<li><a href="message_admin.php">Message Admin</a></li>
 							</ul>
-					<a href="admin/logout.php">Logout</a>
+					<a href="logout.php">Logout</a>
 					<?php
 						}
 					?>

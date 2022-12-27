@@ -24,8 +24,6 @@
 
         <section class="caption">
             <h1 style="text-align: center; font-size:xxx-large;"><span style="font-weight: 100;">Find the Best </span>CarForYou</h1>
-
-
         </section>
     </section><!--  end hero section  -->
 
