@@ -4,7 +4,7 @@
 ?>
 <header>
 			<div class="wrapper">
-				<h1 class="logo">EV Car Company</h1>
+				<h1 class="logo">CarForYou</h1>
 				<a href="#" class="hamburger"></a>
 				<nav>
 					<?php
@@ -13,7 +13,7 @@
 					?>
 					<ul>
 						<li><a href="index.php">Home</a></li>
-						<li><a href="index.php">Rent Cars</a></li>
+						<li><a href="rentcars.php">Rent Cars</a></li>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Contact</a></li>
 					</ul>

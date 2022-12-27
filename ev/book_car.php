@@ -23,7 +23,7 @@
 		?>
 
 		<section class="caption">
-			<h2 class="caption" style="text-align: center">Find You Dream Cars For Hire</h2>
+			<h1 style="text-align: center; font-size:xxx-large;"><span style="font-weight: 100;">Find the Best </span>CarForYou</h1>
 		</section>
 	</section><!--  end hero section  -->
 
@@ -45,25 +45,31 @@
 				$rws = $rs->fetch_assoc();
 				// $rws1 = $rs1->fetch_assoc();
 				?>
+				<h2 style="text-align: center;">Book It Now!!  </h2>
 				<li>
 					<a href="book_car.php?id=<?php echo $rws['car_id'] ?>">
-						<img class="thumb" src="cars/<?php echo $rws['image']; ?>" width="300" height="200">
+						<img class="thumb" src="cars/<?php echo $rws['image']; ?>" width="400" >
 					</a>
-				
+
 
 					<span class="price"><?php echo '₹' . $rws['COST_PER_DAY']; ?></span>
 					<div class="property_details">
 						<h1>
-							<a href="book_car.php?id=<?php echo $rws['car_id'] ?>"><?php echo 'Car Make>' . $rws['MAKE']; ?></a>
+							<a href="book_car.php?id=<?php echo $rws['car_id'] ?>"><?php echo '' . $rws['MAKE']; ?></a>
 						</h1>
-						<h2>Car Name/Model: <span class="property_size"><?php echo $rws['MODEL_NAME']; ?></span></h2>
+						<h2><span class="property_size"><?php echo $rws['MODEL_NAME']; ?></span></h2>
 					</div>
 				</li>
-				<h3>Proceed to Hire <?php echo $rws['MODEL_NAME']; ?>. </h3>
+				
+				<div>
+				<p style="float:left; font-size: 18px; width:400px; text-align:justify ;"><span class="property_size"><?php echo $rws['CAR_DESCRIPTION']; ?></span></p>
+				</div>
 				<?php
-				if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])){
+				if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
 				?>
-					<form method="post">
+					
+					
+					<form method="post" style="float:right;">
 						<table>
 							<tr>
 								<td>Full Name:</td>
