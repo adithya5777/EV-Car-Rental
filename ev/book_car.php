@@ -67,45 +67,7 @@
 				<?php
 				if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
 				?>
-					
-					
-					<form method="post" style="float:right;">
-						<table>
-							<tr>
-								<td>Full Name:</td>
-								<td><input type="text" name="fname" required></td>
-							</tr>
-							<tr>
-								<td>Phone Number:</td>
-								<td><input type="text" name="phone" required></td>
-							</tr>
-							<tr>
-								<td>Email Address:</td>
-								<td><input type="email" name="email" required></td>
-							</tr>
-							<tr>
-								<td>ID Number:</td>
-								<td><input type="text" name="id_no" required></td>
-							</tr>
-							<tr>
-								<td>Gender:</td>
-								<td>
-									<select name="gender">
-										<option> Select Gender </option>
-										<option> Male </option>
-										<option> Female </option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>Location:</td>
-								<td><input type="text" name="location" required></td>
-							</tr>
-							<tr>
-								<td colspan="2" style="text-align:right"><input type="submit" name="save" value="Submit Details"></td>
-							</tr>
-						</table>
-					</form>
+					<a href="account.php">LOGIN</a>
 				<?php
 				} else {
 				?>
@@ -144,55 +106,9 @@
 		</div>
 	</section> <!--  end listing section  -->
 
-	<footer>
-		<div class="wrapper footer">
-			<ul>
-				<li class="links">
-					<ul>
-						<li>OUR COMPANY</li>
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">Terms</a></li>
-						<li><a href="#">Policy</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</li>
-
-				<li class="links">
-					<ul>
-						<li>OTHERS</li>
-						<li><a href="#">...</a></li>
-						<li><a href="#">...</a></li>
-						<li><a href="#">...</a></li>
-						<li><a href="#">...</a></li>
-					</ul>
-				</li>
-
-				<li class="links">
-					<ul>
-						<li>OUR CAR TYPES</li>
-						<li><a href="#">Mercedes</a></li>
-						<li><a href="#">Range Rover</a></li>
-						<li><a href="#">Landcruisers</a></li>
-						<li><a href="#">Others.</a></li>
-					</ul>
-				</li>
-
-				<li class="about">
-					<p>Sonko Rescue team is an organized company that rents cars and other vehicles to clients at lower costs. We we are here to serve every Kenyan Citizen</p>
-					<ul>
-						<li><a href="http://facebook.com/sonko" class="facebook" target="_blank"></a></li>
-						<li><a href="http://twitter.com/sonko" class="twitter" target="_blank"></a></li>
-						<li><a href="http://plus.google.com/+sonko" class="google" target="_blank"></a></li>
-						<li><a href="#" class="skype"></a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-
-		<div class="copyrights wrapper">
-			Copyright &copy; <?php echo date("Y") ?> All Rights Reserved | Designed by Felix Kiamba.
-		</div>
-	</footer><!--  end footer  -->
+	<?php
+		include 'footer.php';
+	?>
 
 </body>
 

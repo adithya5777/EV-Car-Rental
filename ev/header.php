@@ -24,8 +24,10 @@
 					?>
 							<ul>
 								<li><a href="index.php">Home</a></li>
+								<li><a href="rentcars.php">Rent Cars</a></li>
 								<li><a href="status.php">View Status</a></li>
-								<li><a href="message_admin.php">Message Admin</a></li>
+								<li><a href="#">Contact</a></li>
+								<!-- <li><a href="message_admin.php">Message Admin</a></li> -->
 							</ul>
 					<a href="logout.php">Logout</a>
 					<?php
