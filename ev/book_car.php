@@ -17,7 +17,7 @@
 
 <body>
 
-	<section class="wrapper">
+	<section>
 		<?php
 		include 'header.php';
 		?>
@@ -154,13 +154,13 @@
 						<form id="date-form" method="post"
 							action="/ev/book_car.php?id=<?php echo $rws['REGISTRATION_NUMBER'] ?>">
 							<label for="from-date">From:</label>
-							<input type="date" id="from-date" name="from-date">
+							<input type="date" id="from-date" name="from-date" required>
 							<label for="to-date">To:</label>
-							<input type="date" id="to-date" name="to-date"><br><br>
+							<input type="date" id="to-date" name="to-date" required><br><br>
 
 
 							<label>Pick Up Location:</label>
-							<select name="Pick_Up">
+							<select name="Pick_Up" required>
 								<option> Select Location </option>
 								<?php
 								while ($pkl = $pick->fetch_assoc()) { ?>
@@ -171,7 +171,7 @@
 							<br>
 							<br>
 							<label>Drop Off Location:</label>
-							<select name="Drop_Off">
+							<select name="Drop_Off" required>
 								<option> Select Location </option>
 								<?php
 								while ($dpl = $drop->fetch_assoc()) { ?>
@@ -181,7 +181,7 @@
 							</select>
 
 							<br><br>
-							<input type="submit" name="save" value="SUBMIT" id='submit-button'>
+							<input type="submit" name="save" value="RESERVE">
 						</form><br><br>
 
 						<?php
@@ -204,37 +204,18 @@
 								$toDate = $_POST['to-date'];
 								$pickid = $qrws1['LOCATION_ID'];
 								$dropid = $qrws2['LOCATION_ID'];
-
-								// Convert the dates to timestamps
-								$fromTimestamp = strtotime($fromDate);
-								$toTimestamp = strtotime($toDate);
-
-								// Calculate the difference in seconds between the two timestamps
-								$difference = $toTimestamp - $fromTimestamp;
-
-								// Convert the difference to days by dividing it by the number of seconds in a day (86400)
-								$numDays = floor($difference / 86400) + 1;
-								// Display the number of days
-								// echo 'Number of days: ' . $numDays;
-								// echo "     ";
-								// echo "     ";
-					
 								$dln = $rws2['DL_NUMBER'];
 								$amount = $rws['COST_PER_DAY'];
 								$reg = $rws['REGISTRATION_NUMBER'];
 								$bookstatus = "Y";
 								// echo 'From: ' . $fromDate . '  , To: ' . $toDate . '  , From: ' . $fromPick . '  , To: ' . $fromDrop . ' , Amount: ' . $amount.' , DLNO: ' . $dln .' , query: ' . $qrws1['LOCATION_ID'];
 								$qry = "INSERT INTO booking_details(FROM_DT_TIME, RET_DT_TIME, AMOUNT, BOOKING_STATUS, PICKUP_LOC, DROP_LOC, REG_NUM, DL_NUM)VALUES('$fromDate','$toDate','$amount','$bookstatus','$pickid','$dropid', '$reg', '$dln')";
+								
 								$ins = $conn->query($qry);
+								
 								?>
-								<a href="bill.php">Proceed to Billing</a><?php
-							} else {
-								?>
-								<div class="flash-message">
-									<?php echo 'Pls select the details'; ?>
-								</div>
-								<?php
-							}
+								<a href="bill.php?id=<?php echo $rws['REGISTRATION_NUMBER'] ?>">Proceed to Billing</a><?php
+							} 
 						}
 
 						?>

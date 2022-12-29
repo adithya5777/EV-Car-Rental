@@ -864,3 +864,15 @@ footer .copyrights a.ph_link {
 #date-form {
     margin: 0 auto;
 }
+
+.flash-message {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.smtdis {
+    display: none;
+}
