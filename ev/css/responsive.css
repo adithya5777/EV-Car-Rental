@@ -388,7 +388,7 @@ header nav .login_btn:hover {
 /*  listings section  */
 
 .listings {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 .listings ul.properties_list {
@@ -399,7 +399,7 @@ header nav .login_btn:hover {
 .listings ul.properties_list li {
     display: block;
     width: 30.90909090909091%;
-    height: auto;
+    height: 60vh;
     position: relative;
     float: left;
     margin: 0 3.636363636363636% 3.636363636363636% 0;
@@ -852,4 +852,15 @@ footer .copyrights a.ph_link {
     margin-right: auto;
     margin-left: auto;
     width: 300px;
+}
+
+.cal {
+    /* float: right; */
+    /* width: 100px; */
+    display: flex;
+    /* flex-direction: ; */
+}
+
+#date-form {
+    margin: 0 auto;
 }

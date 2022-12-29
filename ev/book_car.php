@@ -17,7 +17,7 @@
 
 <body>
 
-	<section class="">
+	<section class="wrapper">
 		<?php
 		include 'header.php';
 		?>
@@ -33,22 +33,25 @@
 				<?php
 				include 'includes/config.php';
 				$sel = "SELECT * FROM car WHERE REGISTRATION_NUMBER = '$_GET[id]'";
+				$sel1 = "SELECT * FROM `car_category` WHERE CATEGORY_NAME IN ( SELECT CAR_CATEGORY_NAME FROM CAR WHERE REGISTRATION_NUMBER = '$_GET[id]')";
+				$sel2 = "SELECT * FROM customer_details";
 				// isset($_GET['REGISTRATION_NUMBER']);
 				// $registrationNumber = $_GET['REGISTRATION_NUMBER'];
 				//  $sel = "SELECT * FROM car WHERE car_id = '$registrationNumber'";
-
-
 				// $sel = "SELECT * FROM car WHERE car_id = isset($_GET[REGISTRATION_NUMBER])";
 				// $sel1 = "SELECT COST_PER_DAY FROM car WHERE car_id = '$_GET[id]'";
+
 				$rs = $conn->query($sel);
-				// $rs1 = $conn->query($sel1);
+				$rs1 = $conn->query($sel1);
+				$rs2 = $conn->query($sel2);
 				$rws = $rs->fetch_assoc();
-				// $rws1 = $rs1->fetch_assoc();
+				$rws1 = $rs1->fetch_assoc();
+				$rws2 = $rs2->fetch_assoc();
 				?>
-				<h2 style="text-align: center;">Book It Now!!  </h2>
+				<h2 style="text-align: center;">Book It Now!!</h2>
 				<li>
 					<a href="book_car.php?id=<?php echo $rws['car_id'] ?>">
-						<img class="thumb" src="cars/<?php echo $rws['image']; ?>" width="400" >
+						<img class="thumb" src="cars/<?php echo $rws['image']; ?>" width="400">
 					</a>
 
 
@@ -60,54 +63,178 @@
 						<h2><span class="property_size"><?php echo $rws['MODEL_NAME']; ?></span></h2>
 					</div>
 				</li>
-				
+
+
+
+
 				<div>
-				<p style="float:left; font-size: 18px; width:400px; text-align:justify ;"><span class="property_size"><?php echo $rws['CAR_DESCRIPTION']; ?></span></p>
+					<p style="float:left; font-size: 18px; width:400px; text-align:justify ;"><span class="property_size"><?php echo $rws['CAR_DESCRIPTION']; ?></span></p>
 				</div>
+
+				<div class="wrapper">
+					<table>
+						<tr>
+							<td>
+								<div class="property_details">
+									<h2>
+										Car Mileage
+									</h2>
+									<h3><span class="property_size"><?php echo $rws['CAR_RANGE']; ?></span></h3>
+								</div>
+							</td>
+							<td>
+								<div class="property_details">
+									<h2>
+										Car Category
+									</h2>
+									<h3><span class="property_size"><?php echo $rws['CAR_CATEGORY_NAME']; ?></span></h3>
+								</div>
+							</td>
+							<td>
+								<div class="property_details">
+									<h2>
+										Luggage Capacity
+									</h2>
+									<h3><span class="property_size"><?php echo $rws1['NO_OF_LUGGAGE']; ?></span></h3>
+								</div>
+							</td>
+							<td>
+								<div class="property_details">
+									<h2>
+										Seating Capacity
+									</h2>
+									<h3><span class="property_size"><?php echo $rws1['NO_OF_PERSON']; ?></span></h3>
+								</div>
+							</td>
+							<td>
+								<div class="property_details">
+									<h2>
+										Reg. Year
+									</h2>
+									<h3><span class="property_size"><?php echo $rws['MODEL_YEAR']; ?></span></h3>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+
+
 				<?php
-				if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
-				?>
-					<a href="account.php">LOGIN</a>
+		if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
+		?>
+			<a href="account.php">LOGIN</a>
+		<?php
+		} else {
+		?>
+			<div class="property_details">
 				<?php
-				} else {
-				?>
-					<a href="pay.php">Click to Book</a>
-				<?php
-				}
-				?>
+				$pickdrop = "SELECT * FROM location_details";
+				$pick = $conn->query($pickdrop);
+				$drop = $conn->query($pickdrop); ?>
+			</div>
+
+			<section class="cal">
+				<form id="date-form" method="post" action="/ev/book_car.php?id=<?php echo $rws['REGISTRATION_NUMBER'] ?>">
+					<label for="from-date">From:</label>
+					<input type="date" id="from-date" name="from-date">
+					<label for="to-date">To:</label>
+					<input type="date" id="to-date" name="to-date"><br><br>
+
+
+					<label>Pick Up Location:</label>
+					<select name="Pick_Up">
+						<option> Select Location </option>
+						<?php
+						while ($pkl = $pick->fetch_assoc()) { ?>
+							<option><?php echo $pkl['LOCATION_NAME']?></option>
+						<?php }
+						?>
+					</select>
+					<br>
+					<br>
+					<label>Drop Off Location:</label>
+					<select name="Drop_Off">
+						<option> Select Location </option>
+						<?php
+						while ($dpl = $drop->fetch_assoc()) { ?>
+							<option><?php echo $dpl['LOCATION_NAME']?></option>
+						<?php }
+						?>
+					</select>
+
+					<br><br>
+					<input type="submit" name="save" value="SUBMIT">
+				</form><br><br>
+
+
+
+
 				<?php
 				if (isset($_POST['save'])) {
-					include 'includes/config.php';
-					$fname = $_POST['fname'];
-					$id_no = $_POST['id_no'];
-					$gender = $_POST['gender'];
-					$email = $_POST['email'];
-					$phone = $_POST['phone'];
-					$location = $_POST['location'];
+					// Get the selected dates
 
-					$qry = "INSERT INTO client (fname,id_no,gender,email,phone,location,car_id,status)
-							VALUES('$fname','$id_no','$gender','$email','$phone','$location','$_GET[id]','Pending')";
-					$result = $conn->query($qry);
-					if ($result == TRUE) {
-						echo "<script type = \"text/javascript\">
-											alert(\"Successfully Registered. Proceed to pay\");
-											window.location = (\"pay.php\")
-											</script>";
-					} else {
-						echo "<script type = \"text/javascript\">
-											alert(\"Registration Failed. Try Again\");
-											window.location = (\"book_car.php\")
-											</script>";
-					}
+					$fromDate = $_POST['from-date'];
+					$toDate = $_POST['to-date'];
+					
+					$fromPick = $_POST['Pick_Up'];
+					$fromDrop = $_POST['Drop_Off'];
+
+					$q1 = "SELECT * FROM location_details WHERE LOCATION_NAME = '$fromPick'";
+
+					// Convert the dates to timestamps
+					$fromTimestamp = strtotime($fromDate);
+					$toTimestamp = strtotime($toDate);
+
+					// Calculate the difference in seconds between the two timestamps
+					$difference = $toTimestamp - $fromTimestamp;
+
+					// Convert the difference to days by dividing it by the number of seconds in a day (86400)
+					$numDays = floor($difference / 86400) + 1;
+					// Do something with the selected dates
+
+
+
+
+					// Display the number of days
+					echo 'Number of days: ' . $numDays;
+					echo "     ";
+					echo "     ";
+
+					$dln = $rws2['DL_NUMBER'];
+					$amount = $rws['COST_PER_DAY'];
+					$reg = $rws['REGISTRATION_NUMBER'];
+					$bookstatus = "Y";
+					echo 'From: ' . $fromDate . '  , To: ' . $toDate . '  , From: ' . $fromPick . '  , To: ' . $fromDrop . ' , Amount: ' . $amount.' , DLNO: ' . $dln;
+					$qry = "INSERT INTO booking_details(FROM_DT_TIME, RET_DT_TIME, AMOUNT, BOOKING_STATUS, PICKUP_LOC, DROP_LOC, REG_NUM, DL_NUM)VALUES('$fromDate','$toDate','$amount','$bookstatus','$fromPick','$fromDrop', '$reg', '$dln')";
+					$ins = $conn->query($qry);
 				}
 
+
 				?>
+
+			</section>
+		<?php
+		}
+		?>
+
 			</ul>
+
+			
+
+
 		</div>
+
+
+		
+
+
 	</section> <!--  end listing section  -->
 
+
+
 	<?php
-		include 'footer.php';
+	include 'footer.php';
 	?>
 
 </body>
