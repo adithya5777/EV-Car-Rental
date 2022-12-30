@@ -42,7 +42,8 @@
 		<div class="wrapper">
 			<div id="fom">
 				<form method="post">
-					<h3 style="text-align:center; color: #000099; font-weight:bold; text-decoration:underline">Client Login Area</h3>
+					<h3 style="text-align:center; color: #000099; font-weight:bold; text-decoration:underline">Client
+						Login Area</h3>
 					<table height="100" align="center">
 						<tr>
 							<td>Email Address:</td>
@@ -73,18 +74,18 @@
 						// session_start();
 						$_SESSION['email'] = $row['EMAIL_ID'];
 						$_SESSION['pass'] = $row['PASSWORD'];
-				?>
+						?>
 						<div class="flash-message">
 							<?php echo 'Login Successful'; ?>
 						</div>
-					<?php
-		                header('location: index.php');
+						<?php
+						header('location: index.php?uid='.$email);
 					} else {
-					?>
+						?>
 						<div class="flash-message">
 							<?php echo 'Login Unsuccessful. Please Try Again'; ?>
 						</div>
-				<?php
+						<?php
 					}
 				}
 				?>
@@ -95,7 +96,7 @@
 	</section><!--  end search section  -->
 
 	<?php
-		include 'footer.php';
+	include 'footer.php';
 	?><!--  end footer  -->
 
 </body>

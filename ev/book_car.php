@@ -87,7 +87,7 @@
 							<td>
 								<div class="property_details">
 									<h2>
-										Car Mileage
+										Car Range
 									</h2>
 									<h3><span class="property_size">
 											<?php echo $rws['CAR_RANGE']; ?>
@@ -154,9 +154,9 @@
 						<form id="date-form" method="post"
 							action="/ev/book_car.php?id=<?php echo $rws['REGISTRATION_NUMBER'] ?>">
 							<label for="from-date">From:</label>
-							<input type="date" id="from-date" name="from-date" required>
+							<input type="date" id="from-date" name="from-date" min="<?= date('Y-m-d') ?>" required>
 							<label for="to-date">To:</label>
-							<input type="date" id="to-date" name="to-date" required><br><br>
+							<input type="date" id="to-date" name="to-date" min="<?= date('Y-m-d') ?>" required><br><br>
 
 
 							<label>Pick Up Location:</label>
@@ -197,24 +197,35 @@
 							$qrs2 = $conn->query($q2);
 							$qrws1 = $qrs1->fetch_assoc();
 							$qrws2 = $qrs2->fetch_assoc();
+							$fromDate = $_POST['from-date'];
+							$toDate = $_POST['to-date'];
 
 							// Do something with the selected dates
 							if ($fromPick != 'Select Location' && $fromDrop != 'Select Location') {
-								$fromDate = $_POST['from-date'];
-								$toDate = $_POST['to-date'];
-								$pickid = $qrws1['LOCATION_ID'];
-								$dropid = $qrws2['LOCATION_ID'];
-								$dln = $rws2['DL_NUMBER'];
-								$amount = $rws['COST_PER_DAY'];
-								$reg = $rws['REGISTRATION_NUMBER'];
-								$bookstatus = "Y";
-								// echo 'From: ' . $fromDate . '  , To: ' . $toDate . '  , From: ' . $fromPick . '  , To: ' . $fromDrop . ' , Amount: ' . $amount.' , DLNO: ' . $dln .' , query: ' . $qrws1['LOCATION_ID'];
-								$qry = "INSERT INTO booking_details(FROM_DT_TIME, RET_DT_TIME, AMOUNT, BOOKING_STATUS, PICKUP_LOC, DROP_LOC, REG_NUM, DL_NUM)VALUES('$fromDate','$toDate','$amount','$bookstatus','$pickid','$dropid', '$reg', '$dln')";
-								
-								$ins = $conn->query($qry);
-								
-								?>
+								if ($fromDate < $toDate) {
+									$pickid = $qrws1['LOCATION_ID'];
+									$dropid = $qrws2['LOCATION_ID'];
+									$dln = $rws2['DL_NUMBER'];
+									$amount = $rws['COST_PER_DAY'];
+									$reg = $rws['REGISTRATION_NUMBER'];
+									$bookstatus = "Y";
+									// echo 'From: ' . $fromDate . '  , To: ' . $toDate . '  , From: ' . $fromPick . '  , To: ' . $fromDrop . ' , Amount: ' . $amount.' , DLNO: ' . $dln .' , query: ' . $qrws1['LOCATION_ID'];
+									$qry = "INSERT INTO booking_details(FROM_DT_TIME, RET_DT_TIME, AMOUNT, BOOKING_STATUS, PICKUP_LOC, DROP_LOC, REG_NUM, DL_NUM)VALUES('$fromDate','$toDate','$amount','$bookstatus','$pickid','$dropid', '$reg', '$dln')";
+
+									$ins = $conn->query($qry);
+
+									?>
 								<a href="bill.php?id=<?php echo $rws['REGISTRATION_NUMBER'] ?>">Proceed to Billing</a><?php
+								}
+								else{
+									?>
+									<div class="flash-message">
+										<?php 
+										echo 'Invalid Date, Please try again';
+										?>
+									</div>
+								<?php	
+								}
 							} 
 						}
 

@@ -55,6 +55,12 @@
 
 		$fromDate = $rws2['FROM_DT_TIME'];
 		$toDate = $rws2['RET_DT_TIME'];
+		$model = $rws1['MODEL_NAME'];
+		$pickloc = $rwspick['LOCATION_NAME'];
+		$droploc = $rwsdrop['LOCATION_NAME'];
+		$cpd = $rws1['COST_PER_DAY'];
+		
+		
 
 
 		// Convert the dates to timestamps
@@ -66,10 +72,13 @@
 
 		// Convert the difference to days by dividing it by the number of seconds in a day (86400)
 		$numDays = floor($difference / 86400) + 1;
+		$billdate = date('d-m-Y');
 
 
 		$total = $rws1['COST_PER_DAY'] * $numDays;
-
+		$name = $rws['FNAME'] . ' ' . $rws['MNAME'] . ' ' . $rws['LNAME'];
+		$bookid=$rws2['BOOKING_ID'];
+		$ftotal = $total * 1.12;
 		?>
 
 		<section class="caption">
@@ -77,11 +86,16 @@
 		</section>
 		<section class="wrapper">
 
+
+			<!-- <h1><?php echo $rws['FNAME'] . ' ' . $rws['MNAME'] . ' ' . $rws['LNAME'] ?></h1> -->
+			<h1> <?php echo $name?></h1>
+			
+			
+			<h2><?php echo 'Booking ID: #' . $rws2['BOOKING_ID'] ?></h2>
+
+			<h2><?php echo 'Bill Date:'. $billdate  ?></h2>
+
 <!-- 
-			<h1><?php echo $rws['FNAME'] . ' ' . $rws['MNAME'] . ' ' . $rws['LNAME'] ?></h1>
-
-			<h1><?php echo 'Booking ID: #' . $rws2['BOOKING_ID'] ?></h1>
-
 			<h1><?php echo $rws1['MODEL_NAME'] ?></h1>
 
 			<h1><?php echo 'From: ' . $rws2['FROM_DT_TIME'] ?></h1>
@@ -139,6 +153,17 @@
 					</tr> -->
 				</table>
 			</div>
+			<form method="post" action="/ev/bill.php?id=<?php echo $rws1['REGISTRATION_NUMBER'] ?>">
+			<input type="submit" value="pay" name="pay">
+</form>
+			
+			<?php
+			if(isset($_POST['pay'])){
+				$bill = "INSERT INTO billing_details (`NAME`,BOOKING_ID,BILL_DATE,MODEL_NAME,FROM_DATE,TO_DATE,NO_OF_DAYS,CPD,PICK_LOC,DROP_LOC,GROSS_TOTAL,TOTAL_AMOUNT) VALUES ('$name','$bookid','$billdate','$model','$fromDate','$toDate','$numDays','$cpd','$pickloc','$droploc','$total','$ftotal' ) ";
+				$billc = $conn->query($bill);
+			}	
+
+			?>
 		</section>
 	</section> <!--  end listing section  -->
 
