@@ -27,8 +27,8 @@
 
 
 
-		$qry1 = "UPDATE `car` SET `AVAILABILITY_FLAG`='N' WHERE REGISTRATION_NUMBER = '$_GET[id]'";
-		$ins1 = $conn->query($qry1);
+		// $qry1 = "UPDATE `car` SET `AVAILABILITY_FLAG`='N' WHERE REGISTRATION_NUMBER = '$_GET[id]'";
+		// $ins1 = $conn->query($qry1);
 
 		$sel = "SELECT * FROM customer_details WHERE DL_NUMBER IN (SELECT DL_NUM FROM booking_details WHERE REG_NUM = '$_GET[id]')";
 		$rs = $conn->query($sel);

@@ -54,13 +54,6 @@
 		$view3 = "SELECT count(*) FROM billing_details WHERE DL_NUM='$dlnum'";
 		$v3 = $conn->query($view3);
 		$row = $v3->fetch_row();
-		echo $row[0];
-		// echo $vw2['BILL_ID'];
-		// $name=$vw2['NAME'];
-		?>
-		<!-- <h1> <?php echo $name?></h1> -->
-		<?php
-		$i = 0;
 
 		while($vw2 = $v2->fetch_assoc()){
 			
@@ -135,7 +128,6 @@
 					</table>
 				</div>
 				<?php
-				$i++;
 			}
 
 
