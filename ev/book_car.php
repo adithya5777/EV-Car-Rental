@@ -215,7 +215,7 @@
 									$ins = $conn->query($qry);
 
 									?>
-								<a href="bill.php?id=<?php echo $rws['REGISTRATION_NUMBER'] ?>">Proceed to Billing</a><?php
+								<a href="bill.php?id=<?php echo $rws['REGISTRATION_NUMBER']?>">Proceed to Billing</a><?php
 								}
 								else{
 									?>

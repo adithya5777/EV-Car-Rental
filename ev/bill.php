@@ -59,7 +59,7 @@
 		$pickloc = $rwspick['LOCATION_NAME'];
 		$droploc = $rwsdrop['LOCATION_NAME'];
 		$cpd = $rws1['COST_PER_DAY'];
-		
+		$dlnum = $rws['DL_NUMBER'];
 		
 
 
@@ -72,7 +72,7 @@
 
 		// Convert the difference to days by dividing it by the number of seconds in a day (86400)
 		$numDays = floor($difference / 86400) + 1;
-		$billdate = date('d-m-Y');
+		$billdate = date('Y-m-d');
 
 
 		$total = $rws1['COST_PER_DAY'] * $numDays;
@@ -115,7 +115,7 @@
 			<div class="cal">
 
 
-				<table class="invc">
+			<table class="invc">
 					<tr>
 						<th>Model</th>
 						<th>From Date</th>
@@ -131,6 +131,16 @@
 						<td><?php echo '' . $numDays ?></td>
 						<td><?php echo '' . $rws1['COST_PER_DAY'] ?></td>
 						<!-- <td></td> -->
+					</tr>
+					<tr>
+						<th colspan="4" style="text-align:center;">Pick Up Location:</th>
+						<!-- <th>Gross Total</th> -->
+						<td><?php echo '' . $pickloc ?></td>
+					</tr>
+					<tr>
+						<th colspan="4" style="text-align:center;">Drop Off Location</th>
+						<!-- <th></th> -->
+						<td><?php echo '' . $droploc ?></td>
 					</tr>
 					<tr>
 						<th colspan="5" style="text-align:center;"> INVOICE</th>
@@ -154,13 +164,20 @@
 				</table>
 			</div>
 			<form method="post" action="/ev/bill.php?id=<?php echo $rws1['REGISTRATION_NUMBER'] ?>">
-			<input type="submit" value="pay" name="pay">
+			<input type="submit" value="pay" name="pay" id="idpay"  onclick="func()">
 </form>
 			
 			<?php
 			if(isset($_POST['pay'])){
-				$bill = "INSERT INTO billing_details (`NAME`,BOOKING_ID,BILL_DATE,MODEL_NAME,FROM_DATE,TO_DATE,NO_OF_DAYS,CPD,PICK_LOC,DROP_LOC,GROSS_TOTAL,TOTAL_AMOUNT) VALUES ('$name','$bookid','$billdate','$model','$fromDate','$toDate','$numDays','$cpd','$pickloc','$droploc','$total','$ftotal' ) ";
+				$bill = "INSERT INTO billing_details (DL_NUM,`NAME`,BOOKING_ID,BILL_DATE,MODEL_NAME,FROM_DATE,TO_DATE,NO_OF_DAYS,CPD,PICK_LOC,DROP_LOC,GROSS_TOTAL,TOTAL_AMOUNT) VALUES ('$dlnum','$name','$bookid','$billdate','$model','$fromDate','$toDate','$numDays','$cpd','$pickloc','$droploc','$total','$ftotal' ) ";
 				$billc = $conn->query($bill);
+				?>
+									<div class="flash-message">
+										<?php 
+										echo 'Paid Successful';
+										?>
+									</div>
+								<?php
 			}	
 
 			?>
@@ -173,6 +190,6 @@
 	include 'footer.php';
 	?>
 
+	<h1><?php echo ''.$dlnum ?></h1>
 </body>
-
 </html>
