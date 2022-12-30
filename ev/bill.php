@@ -75,27 +75,71 @@
 		<section class="caption">
 			<h1 style="text-align: center; font-size:xxx-large;"><span style="font-weight: 100;">Find the Best </span>CarForYou</h1>
 		</section>
+		<section class="wrapper">
 
-		<h1><?php echo $rws['FNAME'] . ' ' . $rws['MNAME'] . ' ' . $rws['LNAME'] ?></h1>
+<!-- 
+			<h1><?php echo $rws['FNAME'] . ' ' . $rws['MNAME'] . ' ' . $rws['LNAME'] ?></h1>
 
-		<h1><?php echo 'Booking ID: #' . $rws2['BOOKING_ID'] ?></h1>
+			<h1><?php echo 'Booking ID: #' . $rws2['BOOKING_ID'] ?></h1>
 
-		<h1><?php echo $rws1['MODEL_NAME'] ?></h1>
+			<h1><?php echo $rws1['MODEL_NAME'] ?></h1>
 
-		<h1><?php echo 'From: ' . $rws2['FROM_DT_TIME'] ?></h1>
+			<h1><?php echo 'From: ' . $rws2['FROM_DT_TIME'] ?></h1>
 
-		<h1><?php echo 'To: ' . $rws2['RET_DT_TIME'] ?></h1>
+			<h1><?php echo 'To: ' . $rws2['RET_DT_TIME'] ?></h1>
 
-		<h1><?php echo 'From: ' . $rwspick['LOCATION_NAME'] ?></h1>
+			<h1><?php echo 'From: ' . $rwspick['LOCATION_NAME'] ?></h1>
 
-		<h1><?php echo 'To: ' . $rwsdrop['LOCATION_NAME'] ?></h1>
+			<h1><?php echo 'To: ' . $rwsdrop['LOCATION_NAME'] ?></h1>
 
-		<h1><?php echo 'Num of Days: ' . $numDays ?></h1>
+			<h1><?php echo 'Num of Days: ' . $numDays ?></h1>
 
-		<h1><?php echo 'Gross Total: ' . $total ?></h1>
+			<h1><?php echo 'Gross Total: ' . $total ?></h1>
 
-		<h1><?php echo 'Total: ' . $total*1.18 ?></h1>
+			<h1><?php echo 'Total: ' . $total * 1.12 ?></h1> -->
 
+			<div class="cal">
+
+
+				<table class="invc">
+					<tr>
+						<th>Model</th>
+						<th>From Date</th>
+						<th>To Date</th>
+						<th>Total Days</th>
+						<th>Cost Per Day</th>
+						<!-- <th>Gross Total</th> -->
+					</tr>
+					<tr>
+						<td><?php echo $rws1['MODEL_NAME'] ?></td>
+						<td><?php echo '' . $rws2['FROM_DT_TIME'] ?></td>
+						<td><?php echo '' . $rws2['RET_DT_TIME'] ?></td>
+						<td><?php echo '' . $numDays ?></td>
+						<td><?php echo '' . $rws1['COST_PER_DAY'] ?></td>
+						<!-- <td></td> -->
+					</tr>
+					<tr>
+						<th colspan="5" style="text-align:center;"> INVOICE</th>
+						<!-- <th></th> -->
+						<!-- <th><?php echo '' . $total ?></th> -->
+					</tr>
+					<tr>
+						<th colspan="4" style="text-align:center;">Gross Total</th>
+						<!-- <th>Gross Total</th> -->
+						<th><?php echo '' . $total ?></th>
+					</tr>
+					<tr>
+						<th colspan="4" style="text-align:center;">Total Amount(inc. of tax-12%)</th>
+						<!-- <th></th> -->
+						<th><?php echo '' . $total * 1.12 ?></th>
+					</tr>
+					<!-- <tr>
+						<th colspan="4" style="text-align:center;"> Grand Total</th>
+						<th>600</th>
+					</tr> -->
+				</table>
+			</div>
+		</section>
 	</section> <!--  end listing section  -->
 
 

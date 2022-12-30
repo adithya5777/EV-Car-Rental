@@ -3,27 +3,15 @@
 			<ul>
 				<li class="links">
 					<ul>
-						<li>OUR COMPANY</li>
+						<li style="color: #fff; font-weight: bold;">OUR COMPANY</li>
 						<li><a href="#">About Us</a></li>
-						<!-- <li><a href="#">Terms</a></li>
-						<li><a href="#">Policy</a></li> -->
 						<li><a href="#">Contact</a></li>
 					</ul>
 				</li>
 
-				<!-- <li class="links">
-					<ul>
-						<li>OTHERS</li>
-						<li><a href="#">...</a></li>
-						<li><a href="#">...</a></li>
-						<li><a href="#">...</a></li>
-						<li><a href="#">...</a></li>
-					</ul>
-				</li> -->
-
 				<li class="links">
 					<ul>
-						<li>OUR CAR TYPES</li>
+						<li style="color: #fff; font-weight: bold;">OUR CAR TYPES</li>
 						<li><a href="#">Sports</a></li>
 						<li><a href="#">Sedan</a></li>
 						<li><a href="#">SUV</a></li>

@@ -513,7 +513,7 @@ header nav .login_btn:hover {
 
 footer {
     padding-top: 100px;
-    background: #95badf;
+    background: #05070d;
 }
 
 footer .footer>ul {
@@ -539,7 +539,8 @@ footer ul li.links>ul>li {
     display: block;
     width: 100%;
     list-style: none;
-    margin-bottom: 27px;
+    margin-bottom: 18px;
+    font-size: 20px;
 }
 
 footer ul li.links>ul>li:last-child {
@@ -553,7 +554,7 @@ footer .footer>ul>li.links li a {
     font-family: "lato-regular", Helvetica, Arial, sans-serif;
     font-size: 16px;
     letter-spacing: .5px;
-    text-align: left;
+    text-align: center;
 }
 
 footer .footer>ul>li.about {
@@ -875,4 +876,19 @@ footer .copyrights a.ph_link {
 
 .smtdis {
     display: none;
+}
+
+.invc {
+    margin: 20px auto;
+}
+
+.invc tr {
+    text-align: center;
+}
+
+.invc th,
+.invc td {
+    border: 1px solid #cccccc;
+    padding: 15px;
+    padding: 18px;
 }
