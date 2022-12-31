@@ -126,7 +126,7 @@
 
                 if ($ress == TRUE) { ?>
                     <div class="flash-message">
-                        <?php echo 'Sign Up Successful';?>
+                        <?php echo 'Sign Up Successful'; ?>
                     </div>
                 <?php
                 } else {

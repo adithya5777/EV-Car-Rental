@@ -97,19 +97,12 @@
 
 <!-- 
 			<h1><?php echo $rws1['MODEL_NAME'] ?></h1>
-
 			<h1><?php echo 'From: ' . $rws2['FROM_DT_TIME'] ?></h1>
-
 			<h1><?php echo 'To: ' . $rws2['RET_DT_TIME'] ?></h1>
-
 			<h1><?php echo 'From: ' . $rwspick['LOCATION_NAME'] ?></h1>
-
 			<h1><?php echo 'To: ' . $rwsdrop['LOCATION_NAME'] ?></h1>
-
 			<h1><?php echo 'Num of Days: ' . $numDays ?></h1>
-
 			<h1><?php echo 'Gross Total: ' . $total ?></h1>
-
 			<h1><?php echo 'Total: ' . $total * 1.12 ?></h1> -->
 
 			<div class="cal">
