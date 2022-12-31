@@ -28,8 +28,8 @@
 	<section class="wrapper">
 		<?php
 		include 'header.php';
-		include '.includes/config.php';
-		echo 'Hello';
+		
+		
 		
 		?>
 		

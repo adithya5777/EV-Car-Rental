@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2022 at 08:27 AM
+-- Generation Time: Dec 31, 2022 at 01:18 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -156,6 +156,7 @@ CREATE TABLE `car_category` (
 --
 
 INSERT INTO `car_category` (`CATEGORY_NAME`, `NO_OF_LUGGAGE`, `NO_OF_PERSON`) VALUES
+('fdgd', 1, 1),
 ('HATCHBACK', 310, 5),
 ('MINI SUV', 370, 5),
 ('SEDAN', 425, 5),
@@ -303,12 +304,6 @@ ALTER TABLE `billing_details`
 --
 ALTER TABLE `booking_details`
   MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT for table `car`
---
-ALTER TABLE `car`
-  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
