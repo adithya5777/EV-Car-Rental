@@ -10,10 +10,6 @@
 
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
-
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-
 	<style>
 		.flash-message {
 			padding: 20px;
@@ -61,7 +57,7 @@
 				</form>
 				<?php
 				if (isset($_POST['log'])) {
-					 include 'config.php';
+					include 'config.php';
 
 					$email = $_POST['EMAIL_ID'];
 					$pass = $_POST['PASSWORD'];
@@ -71,7 +67,7 @@
 					$num = $log->num_rows;
 					$row = $log->fetch_assoc();
 					if ($num > 0) {
-						 session_start();
+						session_start();
 						$_SESSION['email'] = $row['EMAIL_ID'];
 						$_SESSION['pass'] = $row['PASSWORD'];
 						?>
@@ -79,7 +75,7 @@
 							<?php echo 'Login Successful'; ?>
 						</div>
 						<?php
-						header('location: main.php');
+						header('location: main.php?id='.$_SESSION['email']  );
 					} else {
 						?>
 						<div class="flash-message">

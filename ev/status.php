@@ -34,10 +34,10 @@
 		$view1 = "SELECT * FROM customer_details WHERE EMAIL_ID='$_GET[id]'";
 		$v1 = $conn->query($view1);
 		$vw1 = $v1->fetch_assoc();
-
-		$dlnum = $vw1['DL_NUMBER'];
-
-		$view2 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
+		$try = $v1->num_rows;
+		if($try > 0){
+			$dlnum = $vw1['DL_NUMBER'];
+			$view2 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
 		$v2 = $conn->query($view2);
 		// $vw2 = $v2->fetch_assoc();
 
@@ -104,10 +104,7 @@
 						<!-- <th></th> -->
 						<th><?php echo '' . $total ?></th>
 					</tr>
-					<!-- <tr>
-							<th colspan="4" style="text-align:center;"> Grand Total</th>
-							<th>600</th>
-						</tr> -->
+					
 				</table>
 			</div>
 		<?php
@@ -130,6 +127,14 @@
 			<a href="status.php?id=<?php echo $_SESSION['email'] ?>">REFRESH</a>
 
 		</div>
+		<?php
+		}
+		else{ ?>	
+			<h1>You Have NO BOOKINGS!</h1>
+			<?php
+		}
+		?>
+		
 	</section>
 	<?php
 	include 'footer.php';

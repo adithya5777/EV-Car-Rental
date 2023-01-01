@@ -74,11 +74,6 @@
         <form method="post">
 			<table class="inv">	
                 <tr>
-                <label for="edit">Enter the Car ID you want to edit: </label>
-				<input type="text" id="edit" placeholder="Car ID#" name="edit_id">
-				<input type="submit" name='edit' value="EDIT">
-                </tr><br>
-                <tr>
                 <label for="delete">Enter the Car ID you want to delete: </label>
 				<input type="text" id="delete" placeholder="Car ID#" name="delete_id">
 				<input type="submit" name='delete' value="DELETE">
@@ -90,10 +85,7 @@
 		</form>
         
         <?php 
-        if(isset($_POST['edit'])){
-            $edit_id = $_POST['edit_id'];
-            echo $edit_id;
-        }
+        
         if(isset($_POST['delete'])){
             $delete_id = $_POST['delete_id'];
 
@@ -105,7 +97,7 @@
             $cat1 = $conn->query($cat);
             ?>
            
-           <form method="post">
+           <form method="post" onsubmit="func()">
                 <table>
                     <tr>
                         <td>CAR ID:</td>
@@ -164,10 +156,19 @@
                         <td><input type="submit" name="save" value="SUBMIT"></td>
                     </tr>
                 </table>
-            </form><h1>HELLO</h1><?php
+            </form><?php            
+         }        
+        ?>
+	</section><!--  end search section  -->
 
-            if(isset($_POST['save'])) { ?>
-                <h1>HELLO</h1><?php
+	<?php
+	// include 'footer.php';
+	?><!--  end footer  -->
+
+</body>
+<script>
+    function func(){
+    <?php
 
                 $carid = $_POST['CAR_ID'];
                 $regnum = $_POST['REGNUM'];
@@ -181,18 +182,9 @@
                 $cardesc = $_POST['CARDESC'];
                 $image = $_POST['IMAGE'];
 
-                echo ' ' . $carid . ' ' . $regnum . ' ' . $modelname . ' ' . $make . ' ' . $modelyear . ' ' . $range . ' ' . $category . ' ' . $cpd . ' ' . $flag . ' ' . $cardesc . ' ' . $image;
                 $add = "INSERT INTO car VALUES ('$carid','$regnum','$modelname','$make','$modelyear','$range','$category','$cpd','$flag','$cardesc','$image')";
                 $add1 = $conn->query($add);
-           }
-         }        
-        ?>
-	</section><!--  end search section  -->
-
-	<?php
-	// include 'footer.php';
-	?><!--  end footer  -->
-
-</body>
-
+           ?>
+    }
+</script>
 </html>

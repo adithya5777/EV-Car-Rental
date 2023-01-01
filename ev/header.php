@@ -2,9 +2,10 @@
 	session_start();
 	// error_reporting("E-NOTICE");
 ?>
+
 <header>
 			<div class="wrapper">
-				<h1 class="logo">CarForYou</h1>
+			<a href="index.php"><h1 class="logo">CarForYou</h1></a>
 				<a href="#" class="hamburger"></a>
 				<nav>
 					<?php
@@ -16,9 +17,9 @@
 						<li><a href="rentcars.php">Rent Cars</a></li>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Contact</a></li>
+						<li><a href="account.php">Login</a></li>
 					</ul>
-					<a href="account.php">Client Login</a>
-					<a href="login.php">Admin Login</a>
+					
 					<?php
 						} else{
 					?>
@@ -27,9 +28,9 @@
 								<li><a href="rentcars.php?id=<?php echo $_SESSION['email'] ?>">Rent Cars</a></li>
 								<li><a href="status.php?id=<?php echo $_SESSION['email'] ?>">View Status</a></li>
 								<li><a href="contact.php??id=<?php echo $_SESSION['email'] ?>">Contact</a></li>
-								<!-- <li><a href="message_admin.php">Message Admin</a></li> -->
+								<li><a href="logout.php">Logout</a></li>
 							</ul>
-					<a href="logout.php">Logout</a>
+					
 					<?php
 						}
 					?>

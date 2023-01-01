@@ -1,18 +1,17 @@
 <?php
 session_start();
-// error_reporting("E-NOTICE");
 ?>
+
 <header>
 	<div class="wrapper">
-		<h1 class="logo">CarForYou</h1>
+		<a href="main.php"><h1 class="logo">CarForYou</h1></a>
 		<a href="#" class="hamburger"></a>
-		
+		<!-- <?php echo $_SESSION['email'].$_SESSION['pass'] ?> -->
 		<nav>
 			<?php
 
 			// if(!($_SESSION['email']) && (!($_SESSION['pass']))){
 			if (isset($_SESSION['email']) || isset($_SESSION['pass'])) {
-			
 			?>
 				<ul>
 					<li><a href="main.php">Home</a></li>

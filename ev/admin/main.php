@@ -11,9 +11,6 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
 
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-
 	<!-- <style>
 		body{
 			background-image: url(cars/mercedeseqs.webp);
@@ -25,11 +22,11 @@
 
 <body>
 
-	<section class="wrapper">
+	<section>
 		<?php
 		include 'header.php';
-		
-		
+		include 'config.php';
+		echo 'Hello';
 		
 		?>
 		

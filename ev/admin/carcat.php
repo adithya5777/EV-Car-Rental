@@ -61,30 +61,15 @@
 		</table></div>
         <form method="post">
 			<table class="inv">	
-                <tr>
-                <td>SELECT CAR CATEGORY TO BE EDITED:</td>
-                        <td>
-                            <select name="CATEGORY_EDIT" required>
-								<option> Select Car Category </option>
-								<?php
-								while ($catw1 = $cat1->fetch_assoc()) { ?>
-									<option><?php echo $catw1['CATEGORY_NAME'] ?></option>
-									<?php }
-								?>
-							</select>
-                            <input type="submit" name='cat_edit' value="EDIT">
-                        </td>
-                </tr><br>
+                
                 <tr>
                 <td>SELECT CAR CATEGORY TO BE DELETED:</td>
                         <td>
                             <select name="CATEGORY_DEL" required>
 								<option> Select Car Category </option>
 								<?php
-                                $cas = "SELECT * FROM car_category";
-                                $cas1 = $conn->query($cas);
-								while ($casw1 = $cas1->fetch_assoc()) { ?>
-									<option><?php echo $casw1['CATEGORY_NAME'] ?></option>
+                                while ($catw1 = $cat1->fetch_assoc()) { ?>
+									<option><?php echo $catw1['CATEGORY_NAME'] ?></option>
 									<?php }
 								?>
 							</select>
@@ -107,7 +92,7 @@
             
             ?>
            
-           <form method="post">
+           <form method="post" onsubmit="func()">
                 <table>
                     <tr>
                         <td>CATEGORY NAME:</td>
@@ -125,20 +110,7 @@
                         <td><input type="submit" name="save" value="SUBMIT"></td>
                     </tr>
                 </table>
-            </form><h1>HELLO</h1><?php
-
-            if(isset($_POST['save'])) { ?>
-                <h1>HELLO</h1><?php
-
-                $catname = $_POST['CAT_NAME'];
-                $luggage = $_POST['LUGGAGE'];
-                $seat = $_POST['SEAT'];
-
-                
-                echo ' ' . $catname . ' ' . $luggage . ' ' . $seat . ' ';
-                // $add = "INSERT INTO car VALUES ('$carid','$regnum','$modelname','$make','$modelyear','$range','$category','$cpd','$flag','$cardesc','$image')";
-                // $add1 = $conn->query($add);
-           }
+            </form><?php
          }
         ?>
 
@@ -149,5 +121,19 @@
 	?><!--  end footer  -->
 
 </body>
+<script>
+    function func(){
+        <?php
 
+                $catname = $_POST['CAT_NAME'];
+                $luggage = $_POST['LUGGAGE'];
+                $seat = $_POST['SEAT'];
+
+        if ($luggage != 0 or $seat != 0) {
+            $add = "INSERT INTO car_category VALUES ('$catname','$luggage','$seat')";
+            $add1 = $conn->query($add);
+        }
+                ?>
+    }
+</script>
 </html>
