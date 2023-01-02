@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Sonko Car Rental</title>
+	<title>CarForYou | Book Car</title>
 	<meta charset="utf-8">
 	<meta name="author" content="pixelhint.com">
 	<meta name="description" content="La casa free real state fully responsive html5/css3 home page website template" />
@@ -36,7 +36,7 @@
 				$sel = "SELECT * FROM car WHERE REGISTRATION_NUMBER = '$_GET[id]'";
 				$sel1 = "SELECT * FROM `car_category` WHERE CATEGORY_NAME IN ( SELECT CAR_CATEGORY_NAME FROM CAR WHERE REGISTRATION_NUMBER = '$_GET[id]')";
 
-				$sel2 = "SELECT * FROM customer_details WHERE EMAIL_ID='$_SESSION[email]'";
+				
 				// isset($_GET['REGISTRATION_NUMBER']);
 				// $registrationNumber = $_GET['REGISTRATION_NUMBER'];
 				//  $sel = "SELECT * FROM car WHERE car_id = '$registrationNumber'";
@@ -45,10 +45,10 @@
 				
 				$rs = $conn->query($sel);
 				$rs1 = $conn->query($sel1);
-				$rs2 = $conn->query($sel2);
+				
 				$rws = $rs->fetch_assoc();
 				$rws1 = $rs1->fetch_assoc();
-				$rws2 = $rs2->fetch_assoc();
+				
 				?>
 				
 				<h2 style="text-align: center;">Book It Now!!</h2>
@@ -216,6 +216,10 @@
 								<?php
 							} else {
 								// Do something with the selected dates
+								$sel2 = "SELECT * FROM customer_details WHERE EMAIL_ID='$_SESSION[email]'";
+								$rs2 = $conn->query($sel2);
+								$rws2 = $rs2->fetch_assoc();
+
 								if ($fromPick != 'Select Location' && $fromDrop != 'Select Location') {
 									if ($fromDate < $toDate) {
 										$pickid = $qrws1['LOCATION_ID'];

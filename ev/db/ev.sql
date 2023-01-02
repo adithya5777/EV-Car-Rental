@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2022 at 01:18 PM
+-- Generation Time: Jan 02, 2023 at 06:06 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -62,16 +62,6 @@ CREATE TABLE `billing_details` (
   `TOTAL_AMOUNT` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `billing_details`
---
-
-INSERT INTO `billing_details` (`BILL_ID`, `DL_NUM`, `NAME`, `BOOKING_ID`, `BILL_DATE`, `MODEL_NAME`, `FROM_DATE`, `TO_DATE`, `NO_OF_DAYS`, `CPD`, `PICK_LOC`, `DROP_LOC`, `GROSS_TOTAL`, `TOTAL_AMOUNT`) VALUES
-(22, 'SAAKA55', 'Saathvik M V', 35, '2022-12-31', 'BENZ EQS', '2022-12-31', '2023-01-02', 3, 2500, 'MALL OF MYSORE', 'MYSORE TARPAULINS', 7500, 8400),
-(48, '123KA55', 'Adithya P Patel', 62, '2022-12-31', 'KONA', '2022-12-31', '2023-01-01', 2, 1500, 'MYSORE TARPAULINS', 'VIDHANA SOUDHA', 3000, 3360),
-(49, '123KA55', 'Adithya P Patel', 62, '2022-12-31', 'KONA', '2022-12-31', '2023-01-01', 2, 1500, 'MYSORE TARPAULINS', 'MALL OF MYSORE', 3000, 3360),
-(50, '123KA55', 'Adithya P Patel', 62, '2022-12-31', 'KONA', '2022-12-31', '2023-01-01', 2, 1500, 'MYSORE TARPAULINS', 'MALL OF MYSORE', 3000, 3360);
-
 -- --------------------------------------------------------
 
 --
@@ -89,17 +79,6 @@ CREATE TABLE `booking_details` (
   `REG_NUM` char(7) NOT NULL,
   `DL_NUM` char(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `booking_details`
---
-
-INSERT INTO `booking_details` (`BOOKING_ID`, `FROM_DT_TIME`, `RET_DT_TIME`, `AMOUNT`, `BOOKING_STATUS`, `PICKUP_LOC`, `DROP_LOC`, `REG_NUM`, `DL_NUM`) VALUES
-(35, '2022-12-31', '2023-01-02', 2500, 'Y', 'MOM', 'DUR', '22BH007', 'SAAKA55'),
-(43, '2022-12-31', '2023-01-01', 2000, 'Y', 'DUR', 'MOM', '19BH010', '123KA55'),
-(45, '2022-12-31', '2023-01-01', 3000, 'Y', 'VDS', 'MOM', '22BH008', '123KA55'),
-(62, '2022-12-31', '2023-01-01', 1500, 'Y', 'DUR', 'VDS', '18BH002', '123KA55'),
-(63, '2023-01-02', '2023-01-03', 1500, 'Y', 'VDS', 'MOM', '18BH002', '123KA55');
 
 -- --------------------------------------------------------
 
@@ -156,7 +135,6 @@ CREATE TABLE `car_category` (
 --
 
 INSERT INTO `car_category` (`CATEGORY_NAME`, `NO_OF_LUGGAGE`, `NO_OF_PERSON`) VALUES
-('fdgd', 1, 1),
 ('HATCHBACK', 310, 5),
 ('MINI SUV', 370, 5),
 ('SEDAN', 425, 5),
@@ -297,13 +275,13 @@ ALTER TABLE `location_details`
 -- AUTO_INCREMENT for table `billing_details`
 --
 ALTER TABLE `billing_details`
-  MODIFY `BILL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `BILL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `booking_details`
 --
 ALTER TABLE `booking_details`
-  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- Constraints for dumped tables

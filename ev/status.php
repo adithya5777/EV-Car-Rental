@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>CarForYou</title>
+	<title>CarForYou | View Bookings</title>
 	<meta charset="utf-8">
 	<meta name="author" content="pixelhint.com">
 	<meta name="description" content="La casa free real state fully responsive html5/css3 home page website template" />
@@ -31,19 +31,18 @@
 	<?php include 'includes/config.php'; ?><section class="caption">
 		<h1 style="text-align: center; font-size:xxx-large;"><span style="font-weight: 100;">Find the Best </span>CarForYou</h1>
 		<?php
+		$check = "DELETE FROM booking_details WHERE BOOKING_ID NOT IN (SELECT BOOKING_ID FROM billing_details)";
+		$check1 = $conn->query($check);
+
 		$view1 = "SELECT * FROM customer_details WHERE EMAIL_ID='$_GET[id]'";
 		$v1 = $conn->query($view1);
 		$vw1 = $v1->fetch_assoc();
-		$try = $v1->num_rows;
-		if($try > 0){
-			$dlnum = $vw1['DL_NUMBER'];
-			$view2 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
+		$dlnum = $vw1['DL_NUMBER'];
+		$view2 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
 		$v2 = $conn->query($view2);
+		$try = $v2->num_rows;
+		if($try > 0){
 		// $vw2 = $v2->fetch_assoc();
-
-		$view3 = "SELECT count(*) FROM billing_details WHERE DL_NUM='$dlnum'";
-		$v3 = $conn->query($view3);
-		$row = $v3->fetch_row();
 
 		while ($vw2 = $v2->fetch_assoc()) {
 

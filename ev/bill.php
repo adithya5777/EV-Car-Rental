@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Sonko Car Rental</title>
+	<title>CarForYou | Bill</title>
 	<meta charset="utf-8">
 	<meta name="author" content="pixelhint.com">
 	<meta name="description" content="La casa free real state fully responsive html5/css3 home page website template" />
@@ -24,33 +24,36 @@
 
 		// $email = $_POST['EMAIL_ID'];
 		// $pass = $_POST['PASSWORD'];
-
-
-
 		// $qry1 = "UPDATE `car` SET `AVAILABILITY_FLAG`='N' WHERE REGISTRATION_NUMBER = '$_GET[id]'";
 		// $ins1 = $conn->query($qry1);
-
-		$sel = "SELECT * FROM customer_details WHERE DL_NUMBER IN (SELECT DL_NUM FROM booking_details WHERE REG_NUM = '$_GET[id]')";
+		
+		$email = $_SESSION['email'];
+		$sel = "SELECT * FROM customer_details WHERE DL_NUMBER IN (SELECT DL_NUM FROM booking_details WHERE REG_NUM = '$_GET[id]') AND EMAIL_ID = '$email'";
 		$rs = $conn->query($sel);
-
+		$rws = $rs->fetch_assoc();
 
 		$sel1 = "SELECT * FROM car WHERE REGISTRATION_NUMBER = '$_GET[id]'";
+		$rs1 = $conn->query($sel1);
+		$rws1 = $rs1->fetch_assoc();
 
-		$sel2 = "SELECT * FROM booking_details WHERE REG_NUM = '$_GET[id]'";
+		$sel2 = "SELECT * FROM booking_details WHERE REG_NUM = '$_GET[id]' AND BOOKING_ID = (SELECT MAX(BOOKING_ID) FROM booking_details)";
+		$rs2 = $conn->query($sel2);
+		$rws2 = $rs2->fetch_assoc();
 
-		$selpick = "SELECT * FROM location_details WHERE LOCATION_ID IN (SELECT PICKUP_LOC FROM booking_details WHERE REG_NUM = '$_GET[id]')";
-		$seldrop = "SELECT * FROM location_details WHERE LOCATION_ID IN (SELECT DROP_LOC FROM booking_details WHERE REG_NUM = '$_GET[id]')";
+		// $selpick = "SELECT * FROM location_details WHERE LOCATION_ID IN (SELECT PICKUP_LOC FROM booking_details WHERE REG_NUM = '$_GET[id]')";
+		// $seldrop = "SELECT * FROM location_details WHERE LOCATION_ID IN (SELECT DROP_LOC FROM booking_details WHERE REG_NUM = '$_GET[id]')";
+
+		$pickid = $rws2['PICKUP_LOC'];
+		$dropid = $rws2['DROP_LOC'];
+
+		$selpick = "SELECT * FROM location_details WHERE LOCATION_ID = '$pickid'";
+		$rspick = $conn->query($selpick);
+		$rwspick = $rspick->fetch_assoc();
+		$seldrop = "SELECT * FROM location_details WHERE LOCATION_ID = '$dropid'";
 		// // $sel = "SELECT * FROM customer_details";
 		// $sel1 = "SELECT * from booking_details";
 		// $rs = $conn->query($sel);
-		$rs1 = $conn->query($sel1);
-		$rs2 = $conn->query($sel2);
-		$rspick = $conn->query($selpick);
 		$rsdrop = $conn->query($seldrop);
-		$rws = $rs->fetch_assoc();
-		$rws1 = $rs1->fetch_assoc();
-		$rws2 = $rs2->fetch_assoc();
-		$rwspick = $rspick->fetch_assoc();
 		$rwsdrop = $rsdrop->fetch_assoc();
 
 		$fromDate = $rws2['FROM_DT_TIME'];
@@ -171,8 +174,7 @@
 										?>
 									</div>
 								<?php
-			}	
-
+			} 
 			?>
 		</section>
 	</section> <!--  end listing section  -->

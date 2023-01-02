@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>EV Car Rental</title>
+	<title>CarForYou | Login</title>
 	<meta charset="utf-8">
 	<meta name="author" content="pixelhint.com">
 	<meta name="description" content="La casa free real state fully responsive html5/css3 home page website template" />
