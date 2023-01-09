@@ -14,13 +14,33 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 
-	<!-- <style>
-		body{
-			background-image: url(cars/mercedeseqs.webp);
-			background-repeat: no-repeat;
-			background-size: cover;
+	<style>
+		.booking {
+			font-size: 20px;
+			font-family: 'Quicksand';
+			color: #ededed;
 		}
-	</style> -->
+
+		#book-id {
+			margin: 15px;
+			font-size: 17.5px;
+			font-family: 'Quicksand';
+		}
+
+		#cancel {
+			font-size: 17.5px;
+			font-family: 'Good Times';
+			height: 40px;
+			width: 120px;
+			color: white;
+			border: none;
+			border-radius: 50px;
+			background-color: #da0037;
+		}
+		.bookdet{
+			color: #ededed;
+		}
+	</style>
 </head>
 
 <body>
@@ -28,20 +48,25 @@
 		<?php
 		include 'header.php'; ?>
 	</section><!--  end hero section  -->
-	<?php include 'includes/config.php'; ?><section class="caption">
-		<h1 style="text-align: center; font-size:xxx-large;"><span style="font-weight: 100;">Find the Best </span>CarForYou</h1>
-		<?php
-		$check = "DELETE FROM booking_details WHERE BOOKING_ID NOT IN (SELECT BOOKING_ID FROM billing_details)";
-		$check1 = $conn->query($check);
+	<?php include 'includes/config.php'; ?>
+	<section class="caption" style="margin-top:100px">
+		<br>
+		<h1><span style="font-size:xxx-large; font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find the Best</span><span style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"> CarForYou</span></h1>
+		<!-- <h1 id="motto" style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"><span style="font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find the Best </span>CarForYou</h1> -->
+	</section>
 
-		$view1 = "SELECT * FROM customer_details WHERE EMAIL_ID='$_GET[id]'";
-		$v1 = $conn->query($view1);
-		$vw1 = $v1->fetch_assoc();
-		$dlnum = $vw1['DL_NUMBER'];
-		$view2 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
-		$v2 = $conn->query($view2);
-		$try = $v2->num_rows;
-		if($try > 0){
+	<?php
+	$check = "DELETE FROM booking_details WHERE BOOKING_ID NOT IN (SELECT BOOKING_ID FROM billing_details)";
+	$check1 = $conn->query($check);
+
+	$view1 = "SELECT * FROM customer_details WHERE EMAIL_ID='$_GET[id]'";
+	$v1 = $conn->query($view1);
+	$vw1 = $v1->fetch_assoc();
+	$dlnum = $vw1['DL_NUMBER'];
+	$view2 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
+	$v2 = $conn->query($view2);
+	$try = $v2->num_rows;
+	if ($try > 0) {
 		// $vw2 = $v2->fetch_assoc();
 
 		while ($vw2 = $v2->fetch_assoc()) {
@@ -58,8 +83,9 @@
 			$gross = $vw2['GROSS_TOTAL'];
 			$total = $vw2['TOTAL_AMOUNT'];
 
-		?><h2><?php echo 'Booking ID: #' . $bookid ?></h2>
-			<h2><?php echo 'Bill Date:' . $billdate  ?></h2>
+	?>
+			<h2 class="bookdet"><?php echo 'Booking ID: #' . $bookid ?></h2>
+			<h2 class="bookdet"><?php echo 'Bill Date: ' . $billdate  ?></h2>
 			<div class="cal">
 				<table class="invc">
 					<tr>
@@ -103,17 +129,20 @@
 						<!-- <th></th> -->
 						<th><?php echo '' . $total ?></th>
 					</tr>
-					
+
 				</table>
 			</div>
 		<?php
 		}
 		?><div class="wrapper">
-			<form method="post" onsubmit="rl()">
-				<label for="book-id">Enter your Booking ID to Cancel: </label>
-				<input type="text" id="book-id" placeholder="Booking ID #" name="cancel-id">
-				<input type="submit" name='cancel' value="CANCEL">
-			</form>
+			<div>
+				<form method="post" onsubmit="rl()">
+					<label class="booking" for="book-id">Enter your Booking ID to Cancel: </label><br>
+					<input type="text" id="book-id" placeholder="Booking ID #" name="cancel-id"><br>
+					<input id="cancel" type="submit" name='cancel' value="CANCEL">
+				</form>
+			</div>
+
 			<?php
 			if (isset($_POST['cancel'])) {
 				$cancel_id = $_POST['cancel-id'];
@@ -126,14 +155,13 @@
 			<a href="status.php?id=<?php echo $_SESSION['email'] ?>">REFRESH</a>
 
 		</div>
-		<?php
-		}
-		else{ ?>	
-			<h1>You Have NO BOOKINGS!</h1>
-			<?php
-		}
-		?>
-		
+	<?php
+	} else { ?>
+		<h1 class="red-font" style="font-size:30px; margin:60px;">You Have NO BOOKINGS!</h1>
+	<?php
+	}
+	?>
+
 	</section>
 	<?php
 	include 'footer.php';

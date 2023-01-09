@@ -4,7 +4,7 @@
 				<li class="links">
 					<ul>
 						<li style="color: #fff; font-weight: bold;">OUR COMPANY</li>
-						<li><a href="#">About Us</a></li>
+						<li><a href="#about">About Us</a></li>
 						<li><a href="#">Contact</a></li>
 					</ul>
 				</li>

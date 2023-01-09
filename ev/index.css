@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@font-face {
+    font-family: 'Good Times';
+    src: url(/cars/good\ times\ rg.otf);
+}
+
+body {
+    background-image: url(/assets/bgm.jpg);
+}
+
+header {
+    position: relative;
+    top: 0%;
+}
+
+h1,
+h3 {
+    font-family: 'Good Times';
+    /* font-size: 30px; */
+    /* color: rgb(0, 0, 0); */
+}
+
+
+/* #nex {
+    /* border-radius: 20px; */

@@ -13,6 +13,15 @@
 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+	<style>
+		h2{
+			font-size: 30px;
+		}
+		h3{
+			font-size: 20px;
+			margin: 17px;
+		}
+	</style>
 </head>
 
 <body>
@@ -91,12 +100,12 @@
 
 
 			<!-- <h1><?php echo $rws['FNAME'] . ' ' . $rws['MNAME'] . ' ' . $rws['LNAME'] ?></h1> -->
-			<h1> <?php echo $name?></h1>
+			<h2> <?php echo $name?></h2>
 			
 			
-			<h2><?php echo 'Booking ID: #' . $rws2['BOOKING_ID'] ?></h2>
+			<h3><?php echo 'Booking ID: #' . $rws2['BOOKING_ID'] ?></h3>
 
-			<h2><?php echo 'Bill Date:'. $billdate  ?></h2>
+			<h3><?php echo 'Bill Date:'. $billdate  ?></h3>
 
 <!-- 
 			<h1><?php echo $rws1['MODEL_NAME'] ?></h1>

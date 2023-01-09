@@ -28,12 +28,16 @@
 <body>
 
 	<section class="">
+
 		<?php
-		include 'header.php';
+		session_start();
+		// error_reporting("E-NOTICE");
 		?>
 
-		<section class="caption">
-			<h2 class="caption" style="text-align: center">Find You Dream Cars For Hire</h2>
+		<section class="caption" style="margin-top:100px">
+
+			<h1><span style="font-size:xxx-large; font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find the Best</span><span style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"> CarForYou</span></h1>
+			<!-- <h1 id="motto" style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"><span style="font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find the Best </span>CarForYou</h1> -->
 		</section>
 	</section><!--  end hero section  -->
 
@@ -55,7 +59,7 @@
 						</tr>
 						<tr>
 							<td><input type="submit" name="log" value="Login Here"></td>
-							<td style="text-align:right;"><a href="signup.php">Sigup Here</a></td>
+							<td style="text-align:right; color: #000">Don't have an account? <a href="signup.php" style="color: red">REGISTER NOW!</a></td>
 						</tr>
 					</table>
 				</form>
@@ -74,18 +78,18 @@
 						// session_start();
 						$_SESSION['email'] = $row['EMAIL_ID'];
 						$_SESSION['pass'] = $row['PASSWORD'];
-						?>
+				?>
 						<div class="flash-message">
 							<?php echo 'Login Successful'; ?>
 						</div>
-						<?php
-						header('location: index.php?uid='.$email);
+					<?php
+						header('location: index.php?uid=' . $email);
 					} else {
-						?>
+					?>
 						<div class="flash-message">
 							<?php echo 'Login Unsuccessful. Please Try Again'; ?>
 						</div>
-						<?php
+				<?php
 					}
 				}
 				?>
@@ -95,9 +99,6 @@
 
 	</section><!--  end search section  -->
 
-	<?php
-	include 'footer.php';
-	?><!--  end footer  -->
 
 </body>
 
