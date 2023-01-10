@@ -66,6 +66,7 @@
 	$view2 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
 	$v2 = $conn->query($view2);
 	$try = $v2->num_rows;
+	$date=date('Y-m-d');
 	if ($try > 0) {
 		// $vw2 = $v2->fetch_assoc();
 
@@ -86,6 +87,7 @@
 	?>
 			<h2 class="bookdet"><?php echo 'Booking ID: #' . $bookid ?></h2>
 			<h2 class="bookdet"><?php echo 'Bill Date: ' . $billdate  ?></h2>
+			<h2 class="bookdet"><?php echo "Today's Date: " . $date  ?></h2>
 			<div class="cal">
 				<table class="invc">
 					<tr>
@@ -146,10 +148,23 @@
 			<?php
 			if (isset($_POST['cancel'])) {
 				$cancel_id = $_POST['cancel-id'];
-				$sel = "DELETE FROM `billing_details`  WHERE BOOKING_ID = '$cancel_id'";
-				$sel1 = "DELETE FROM `booking_details` WHERE BOOKING_ID = '$cancel_id'";
+				$sel = "DELETE FROM `billing_details`  WHERE BOOKING_ID = '$cancel_id' AND ( FROM_DATE >= '$date')";
+				$sel1 = "DELETE FROM `booking_details` WHERE BOOKING_ID = '$cancel_id' AND ( FROM_DT_TIME >= '$date')";
 				$rs = $conn->query($sel);
 				$rs1 = $conn->query($sel1);
+				
+				if ($rs && $rs1) {
+					if ($conn->affected_rows == 0) {
+						?>
+		             <div class="flash-message">
+                        <?php echo "Can't Cancel Previous Bookings!"; ?>
+                    </div>
+                <?php
+					}
+				}
+				?>
+				<h2 class="bookdet"><?php echo "Today's Date: " . $conn->affected_rows  ?></h2>
+				<?php
 			} ?>
 
 			<a href="status.php?id=<?php echo $_SESSION['email'] ?>">REFRESH</a>

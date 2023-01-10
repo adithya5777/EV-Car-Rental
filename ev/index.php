@@ -42,7 +42,11 @@
 
 			<section class="caption" style="margin-top:100px">
 				<br>
-				<h1><span style="font-size:xxx-large; font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find the Best</span><span style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"> CarForYou</span></h1>
+				<h1><span
+						style="font-size:xxx-large; font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find
+						the Best</span><span
+						style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);">
+						CarForYou</span></h1>
 				<!-- <h1 id="motto" style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"><span style="font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find the Best </span>CarForYou</h1> -->
 			</section>
 		</section>
@@ -60,9 +64,6 @@
 
 
 	<section>
-		<?php
-		include 'includes/config.php';
-		?>
 		<div class="row">
 			<div>
 				<div>
@@ -77,21 +78,34 @@
 			</div>
 			<div class="Input">
 				<div>
-					<form method="POST" id="contact-form" onsubmit="func(); alert('Thank you for your feedback!');">
+					<form method="POST" id="contact-form" >
 						<div>
-							<input type="text" name="Name" id="Name" placeholder="Name" required style="visibility: visible; animation-name: fadeInUp;">
+							<input type="text" name="Name" id="Name" placeholder="Name" required
+								style="visibility: visible; animation-name: fadeInUp;">
 						</div>
 						<div>
-							<input type="email" name="Email" id="Email" placeholder="Email" required style="background-size: 20px; background-position: 97% center; cursor: auto;">
+							<input type="email" name="Email" id="Email" placeholder="Email" required
+								style="background-size: 20px; background-position: 97% center; cursor: auto;">
 						</div>
 						<div>
-							<textarea name="Message" rows="8" cols="20" id="Message" placeholder="Message" required style="visibility: visible; animation-name: fadeInUp; width: 769px; height: 152px;"></textarea>
+							<textarea name="Message" rows="8" cols="20" id="Message" placeholder="Message" required
+								style="visibility: visible; animation-name: fadeInUp; width: 769px; height: 152px;"></textarea>
 						</div>
 						<div>
-							<input type="submit" name="submit" value="Submit">
+							<input type="submit" name="submit1" value="Submit">
 						</div>
 					</form>
 					<?php
+					if (isset($_POST['submit1'])) {
+						
+
+						$email = $_POST['Email'];
+						$name = $_POST['Name'];
+						$mess = $_POST['Message'];
+
+						$in = "INSERT INTO contact (`Name`,Email,`Message`) VALUES ('$email','$name','$mess')";
+						$ins = $conn->query($in);
+					}
 					?>
 				</div>
 			</div>
@@ -100,24 +114,12 @@
 	</section>
 
 	<?php
-	
+
 	include 'footer.php';
 	?>
 
 </body>
 
-<script>
-	function func() {
-		<?php
-		include 'includes/config.php';
-		$email = $_POST['Email'];
-		$name = $_POST['Name'];
-		$mess = $_POST['Message'];
 
-		$in = "INSERT INTO contact (`Name`,Email,`Message`) VALUES ('$email','$name','$mess')";
-		$ins = $conn->query($in);
-		?>
-	}
-</script>
 
 </html>
