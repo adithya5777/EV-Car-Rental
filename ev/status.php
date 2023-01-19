@@ -10,6 +10,7 @@
 
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<link rel="shortcut icon" href="/ev/assets/favicon_io/favicon.ico" type="image/x-icon">
 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
@@ -37,7 +38,21 @@
 			border-radius: 50px;
 			background-color: #da0037;
 		}
-		.bookdet{
+
+		#refr{
+			margin: 15px;
+			font-size: 17.5px;
+			font-family: 'Good Times';
+			height: 40px;
+			width: 120px;
+			color: white;
+			border: none;
+			border-radius: 50px;
+			background-color: #49c5b6;
+		}
+		
+
+		.bookdet {
 			color: #ededed;
 		}
 	</style>
@@ -66,7 +81,8 @@
 	$view2 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
 	$v2 = $conn->query($view2);
 	$try = $v2->num_rows;
-	$date=date('Y-m-d');
+	$date = date('y-m-d', strtotime("+1 day"));
+	// $date = date('y-m-d');
 	if ($try > 0) {
 		// $vw2 = $v2->fetch_assoc();
 
@@ -87,7 +103,6 @@
 	?>
 			<h2 class="bookdet"><?php echo 'Booking ID: #' . $bookid ?></h2>
 			<h2 class="bookdet"><?php echo 'Bill Date: ' . $billdate  ?></h2>
-			<h2 class="bookdet"><?php echo "Today's Date: " . $date  ?></h2>
 			<div class="cal">
 				<table class="invc">
 					<tr>
@@ -136,12 +151,24 @@
 			</div>
 		<?php
 		}
+		$view3 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
+		$v3 = $conn->query($view3);
 		?><div class="wrapper">
 			<div>
-				<form method="post" onsubmit="rl()">
+				<form method="post">
 					<label class="booking" for="book-id">Enter your Booking ID to Cancel: </label><br>
-					<input type="text" id="book-id" placeholder="Booking ID #" name="cancel-id"><br>
-					<input id="cancel" type="submit" name='cancel' value="CANCEL">
+					<!-- <input type="text" id="book-id" placeholder="Booking ID #" name="cancel-id"><br> -->
+					<select name="cancel-id" required>
+						<option> Select BOOKING_ID </option>
+						<?php
+						while ($vw3 = $v3->fetch_assoc()) {
+						?>
+							<option><?php echo $vw3['BOOKING_ID'] ?></option> <?php
+																			}
+																				?>
+					</select>
+					<br>
+					<input class="cancbut" id="cancel" type="submit" name='cancel' value="CANCEL">
 				</form>
 			</div>
 
@@ -152,22 +179,9 @@
 				$sel1 = "DELETE FROM `booking_details` WHERE BOOKING_ID = '$cancel_id' AND ( FROM_DT_TIME >= '$date')";
 				$rs = $conn->query($sel);
 				$rs1 = $conn->query($sel1);
-				
-				if ($rs && $rs1) {
-					if ($conn->affected_rows == 0) {
-						?>
-		             <div class="flash-message">
-                        <?php echo "Can't Cancel Previous Bookings!"; ?>
-                    </div>
-                <?php
-					}
-				}
-				?>
-				<h2 class="bookdet"><?php echo "Today's Date: " . $conn->affected_rows  ?></h2>
-				<?php
 			} ?>
 
-			<a href="status.php?id=<?php echo $_SESSION['email'] ?>">REFRESH</a>
+			<button style="height: 40px; width: 120px; color: #ededed; background: #49c5b6;" class="but"><a  href="status.php?id=<?php echo $_SESSION['email'] ?>"></a>REFRESH</button>
 
 		</div>
 	<?php

@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <link rel="shortcut icon" href="/ev/assets/favicon_io/favicon.ico" type="image/x-icon">
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
@@ -21,27 +22,50 @@
             border-radius: 5px;
             margin-bottom: 15px;
         }
+
+        body{
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        td {
+            color: #ededed;
+            font-family: 'Quicksand';
+        }
     </style>
 </head>
 
-<body>
+<body class="hide">
 
     <section class="">
         <?php
-        include 'header.php';
+        // include 'header.php';
         ?>
 
-        <section class="caption">
-            <h1 style="text-align: center; font-size:xxx-large;"><span style="font-weight: 100;">Find the Best </span>CarForYou</h1>
-        </section>
+        <!-- <section class="caption" style="margin-top:100px">
+            <br>
+            <h1><span style="font-size:xxx-large; font-weight: 100; color: #ededed;">Find the Best</span><span style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"> CarForYou</span></h1>
+            <!-- <h1 id="motto" style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"><span style="font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find the Best </span>CarForYou</h1> -->
+    </section> -->
     </section><!--  end hero section  -->
 
 
-    <section class="listings" style="display: flex">
-        <div class="wrapper" style="margin: 0 auto;">
+    <section class="wrapper" id="contact" style="max-width: 1350px;">
+		<!-- <br><br><br><br><br><br> -->
+		<div class="wrapper cntform" style="margin-top: 3%">
+			<div>
+				<!-- <h1><span style="font-size:xxx-large; font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000); margin-top: 150px;">CONTACT US</span></h1> -->
+				<h1 class="logo" style="color: #ededed; font-size: 40px;"><img id="logoimg" src="/ev/assets/favicon_io/android-chrome-512x512.png" alt="logo" width="37" height="37"> CarForYou</h1>
+				<address>
+					Campus Rd, University Of Mysore Campus,<br>
+					Mysuru, Karnataka, India 570006<br>
+					Phone: <a style="color: blue; " href='tel:+919876543215'>+919876543215</a>
+				</address>
+			</div>
+			<section class="listings" style="display: flex; padding:0;">
+        <div class="wrapper" style=" display:flex; flex-direction:column; margin: 0 auto; backdrop-filter: blur(2px); background: rgba(186, 186, 186, 0.502); width: 420px; height: 630px; border-radius: 20px;">
 
-            <h1 style="text-align: center;">Signup Here</h1>
-            <form method="post">
+        <h1><span style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"> Sign Up</span></h1>
+            <form method="post" style="margin: 0 auto;">
                 <table>
                     <tr>
                         <td>E-mail:</td>
@@ -84,14 +108,21 @@
                         <td><input type="text" name="ZIPCODE" required></td>
                     </tr>
                     <tr>
-                        <td>Enter your Password:</td>
+                        <td>Password:</td>
                         <td><input type="password" name="PASSWORD" required></td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="text-align:right"><input type="submit" name="save" value="SUBMIT"></td>
+                        <td>CPassword:</td>
+                        <td><input type="password" name="CPASSWORD" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center">
+                            <input class="but" type="submit" name="save" value="SUBMIT" style="width: 100px; color: #ededed; background: #49c5b6;">
+                        </td>
                     </tr>
                 </table>
             </form>
+
             <?php
             if (isset($_POST['save'])) {
                 include 'includes/config.php';
@@ -106,7 +137,18 @@
                 $state = $_POST['STATE_NAME'];
                 $zip = $_POST['ZIPCODE'];
                 $pwd = $_POST['PASSWORD'];
+                $cpwd = $_POST['CPASSWORD'];
 
+                if ($pwd != $cpwd) {
+            ?>
+                    <div class="flash-message">
+                        <?php
+                        echo "Password doesn't match. Try Again";
+                        exit();
+                        ?>
+                    </div>
+                <?php
+                }
                 try {
                     $res = "SELECT EMAIL_ID FROM customer_details";
                     $qry = "INSERT INTO customer_details VALUES('$email','$fname','$mname','$lname','$dlno','$phone','$street','$city','$state','$zip','$pwd')";
@@ -115,7 +157,7 @@
                     $emails = $ress->fetch_assoc();
                 } catch (mysqli_sql_exception $e) {
 
-            ?>
+                ?>
                     <div class="flash-message">
                         <?php echo 'Registration Failed. The Email ID or the DL Number already exists. Try Again'; ?>
                     </div>
@@ -126,7 +168,12 @@
 
                 if ($ress == TRUE) { ?>
                     <div class="flash-message">
-                        <?php echo 'Sign Up Successful'; ?>
+                        <?php echo 'Sign Up Successful';
+                        // header('location: account.php');
+                        ?>
+                    </div>
+                    <div class="flash-message">
+                        <a href="account.php">PROCEED TO LOGIN</a>
                     </div>
                 <?php
                 } else {
@@ -141,10 +188,18 @@
             ?>
             </ul>
         </div>
-    </section> <!--  end listing section  -->
+    </section>
+			
+
+		</section>
+		</div>
+
+	</section>
+     <!--  end listing section  -->
 
     <?php
-    include 'footer.php';
+
+    // include 'footer.php';
     ?>
 
 </body>

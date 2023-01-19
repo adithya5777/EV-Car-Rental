@@ -91,7 +91,7 @@ session_start();
 					<li><a href="index.php">Home</a></li>
 					<li><a href="rentcars.php">Rent Cars</a></li>
 					<li><a href="#about">About</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="#contact">Contact</a></li>
 					<li><a href="account.php">Login</a></li>
 				</ul>
 
@@ -109,7 +109,7 @@ session_start();
 					<li><a href="rentcars.php?id=<?php echo $_SESSION['email'] ?>">Rent Cars</a></li>
 					<li><a href="#about">About</a></li>
 					<!-- <li><a href="status.php?id=<?php echo $_SESSION['email'] ?>">View Status</a></li> -->
-					<li><a href="#">Contact</a></li>
+					<li><a href="#contact">Contact</a></li>
 					<li>
 						<div class="dropdown">
 							<button class="dropbtn">

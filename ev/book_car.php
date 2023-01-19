@@ -259,11 +259,11 @@
 					<form id="date-form" method="post" action="/ev/book_car.php?id=<?php echo $rws['REGISTRATION_NUMBER'] ?>">
 						<div class="r4">
 							<div>
-								<label for="from-date">From:</label><br>
+								<label class="bclabel" for="from-date">From:</label><br>
 								<input type="date" id="from-date" name="from-date" min="<?= date('Y-m-d') ?>" required>
 							</div>
 							<div>
-								<label for="to-date">To:</label>
+								<label class="bclabel" for="to-date">To:</label>
 								<br>
 								<input type="date" id="to-date" name="to-date" min="<?= date('Y-m-d') ?>" required>
 							</div>
