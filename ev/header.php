@@ -107,9 +107,9 @@ session_start();
 				<ul>
 					<li><a href="index.php?id=<?php echo $_SESSION['email'] ?>">Home</a></li>
 					<li><a href="rentcars.php?id=<?php echo $_SESSION['email'] ?>">Rent Cars</a></li>
-					<li><a href="#about">About</a></li>
-					<!-- <li><a href="status.php?id=<?php echo $_SESSION['email'] ?>">View Status</a></li> -->
-					<li><a href="#contact">Contact</a></li>
+					<!-- <li><a href="#">About</a></li>
+					 <li><a href="status.php?id=<?php echo $_SESSION['email'] ?>">View Status</a></li> -->
+					<!-- <li><a href="#contact">Contact</a></li> -->
 					<li>
 						<div class="dropdown">
 							<button class="dropbtn">

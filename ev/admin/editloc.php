@@ -15,14 +15,7 @@
     <script type="text/javascript" src="js/main.js"></script>
 
     <style>
-        .flash-message {
-            padding: 20px;
-            background-color: #f44336;
-            color: white;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .tds{
+        .tds {
             color: #ededed;
             font-family: 'Quicksand';
         }
@@ -111,13 +104,15 @@
         <?php
         if (isset($_POST['loc_delete'])) {
             $loc_id = $_POST['LOCATION_DEL'];
-
+            $conn->query("SET foreign_key_checks = 0");
             $del = "DELETE FROM location_details WHERE LOCATION_NAME = '$loc_id'";
             $del1 = $conn->query($del);
+            $conn->query("SET foreign_key_checks = 1");
+           
         }
         if (isset($_POST['add'])) {
 
-        ?>
+            ?>
             <div class="wrapper" style="display: flex; margin-top: 50px;">
                 <form method="post" onsubmit="func()" style="margin: 0 auto;">
                     <table>
@@ -146,7 +141,10 @@
                             <td><input type="text" name="ZIPCODE" required></td>
                         </tr>
                         <tr>
-                            <td class="tds"><input type="submit" name="save" value="SUBMIT"></td>
+                            <!-- <td class="tds"><input type="submit" name="save" value="SUBMIT"></td> -->
+                            <td colspan="2" style="text-align:center">
+                                <input class="but" type="submit" name="save" value="SUBMIT" style="width: 100px; color: #ededed; background: #49c5b6;">
+                            </td>
                         </tr>
                     </table>
                 </form>

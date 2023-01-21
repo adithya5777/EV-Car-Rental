@@ -14,15 +14,7 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 
-	<style>
-		.flash-message {
-			padding: 20px;
-			background-color: #f44336;
-			color: white;
-			border-radius: 5px;
-			margin-bottom: 15px;
-		}
-	</style>
+	
 </head>
 
 <body>

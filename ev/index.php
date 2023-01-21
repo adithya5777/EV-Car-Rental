@@ -14,6 +14,7 @@
 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+
 	<link rel="shortcut icon" href="/ev/assets/favicon_io/favicon.ico" type="image/x-icon">
 
 	<link rel="shortcut icon" href="/assets/logofinal.png" type="">
@@ -23,12 +24,35 @@
 			position: fixed;
 			top: 0;
 		}
-
-		
 	</style>
+	<!-- <script>
+		window.onbeforeunload = function() {
+			console.log("MAAKICHUT");
+			// Make an AJAX call to a server-side script that runs the SQL trigger
+			$.ajax({
+				type: "POST",
+				url: "runtrigger.php",
+				data: {
+					// any data you need to pass to the server-side script
+				}
+			});
+		};
+	</script> -->
+
+	<!-- <script>
+		$(document).ready(function() {
+			$.ajax({
+				type: "POST",
+				url: "runtrigger.php",
+				data: {
+					// any data you need to pass to the server-side script
+				}
+			});
+		});
+	</script> -->
 </head>
 
-<body class="hide">
+<body class="hide" onload="runTrigger()">
 
 	<section id="lp">
 		<section class="top-header">
@@ -47,77 +71,24 @@
 	</section>
 	<!--  end hero section  -->
 
-	<?php 
+	<?php
 	include 'includes/about.php';
 	include 'includes/contact.php';
-	?>
-
-
-	<!-- <section class="caption" id="contact">
-		<br><br><br><br><br><br><br>
-		<h1><span style="font-size:xxx-large; font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">CONTACT US</span></h1>
-		
-		<div class="row">
-
-			<div class="Input">
-
-				<div class="wrapper cntform">
-					<div>
-						<h3>Address</h3>
-						<address>
-							<h1 class="logo"><img id="logoimg" src="/ev/assets/favicon_io/android-chrome-512x512.png" alt="logo" width="37" height="37"> CarForYou</h1>
-							Campus Rd, University Of Mysore Campus,<br>
-							Mysuru, Karnataka, India 570006<br>
-							Phone: 9876543215
-						</address>
-					</div>
-					<div>
-						<form method="POST" id="contact-form" onsubmit="func(); alert('Thank you for your feedback!');">
-							<div>
-								<input type="text" name="Name" id="Name" placeholder="Name" required style="visibility: visible; animation-name: fadeInUp;">
-							</div>
-							<div>
-								<input type="email" name="Email" id="Email" placeholder="Email" required style="background-size: 20px; background-position: 97% center; cursor: auto;">
-							</div>
-							<div>
-								<textarea name="Message" rows="8" cols="20" id="Message" placeholder="Message" required style="visibility: visible; animation-name: fadeInUp; width: 769px; height: 152px;"></textarea>
-							</div>
-							<div>
-								<input type="submit" name="submit" value="Submit">
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- <div>
-					<form method="POST" id="contact-form" onsubmit="func(); alert('Thank you for your feedback!');">
-						<div>
-							<input type="text" name="Name" id="Name" placeholder="Name" required style="visibility: visible; animation-name: fadeInUp;">
-						</div>
-						<div>
-							<input type="email" name="Email" id="Email" placeholder="Email" required style="background-size: 20px; background-position: 97% center; cursor: auto;">
-						</div>
-						<div>
-							<textarea name="Message" rows="8" cols="20" id="Message" placeholder="Message" required style="visibility: visible; animation-name: fadeInUp; width: 769px; height: 152px;"></textarea>
-						</div>
-						<div>
-							<input type="submit" name="submit" value="Submit">
-						</div>
-					</form>
-					<?php
-					?>
-				</div> -->
-			</div>
-		</div>
-
-	</section> -->
-
-	<?php
-
 	include 'footer.php';
 	?>
-
 </body>
 
+<script>
+	function runTrigger() {
+		$.ajax({
+			type: "POST",
+			url: "run_sql_trigger.php",
+			data: {
+				// any data you need to pass to the server-side script
+			}
+		});
+	}
+</script>
 
 
 </html>

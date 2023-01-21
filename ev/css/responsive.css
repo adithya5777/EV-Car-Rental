@@ -911,8 +911,10 @@
     }
     
     .flash-message {
+        font-family: 'Quicksand';
+        margin: 10px 400px;
         padding: 20px;
-        background-color: #f44336;
+        background-color: #49d645;
         color: white;
         border-radius: 5px;
         margin-bottom: 15px;

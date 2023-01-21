@@ -14,6 +14,19 @@
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script>
+		window.onbeforeunload = function() {
+			// Make an AJAX call to a server-side script that runs the SQL trigger
+            console.log("MAAKICHUT");
+			$.ajax({
+				type: "POST",
+				url: "runtrigger.php",
+				data: {
+					// any data you need to pass to the server-side script
+				}
+			});
+		};
+	</script>
 </head>
 
 <body class="hide">

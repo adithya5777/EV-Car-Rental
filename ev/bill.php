@@ -14,10 +14,11 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<style>
-		h2{
+		h2 {
 			font-size: 30px;
 		}
-		h3{
+
+		h3 {
 			font-size: 20px;
 			margin: 17px;
 		}
@@ -35,7 +36,7 @@
 		// $pass = $_POST['PASSWORD'];
 		// $qry1 = "UPDATE `car` SET `AVAILABILITY_FLAG`='N' WHERE REGISTRATION_NUMBER = '$_GET[id]'";
 		// $ins1 = $conn->query($qry1);
-		
+
 		$email = $_SESSION['email'];
 		$sel = "SELECT * FROM customer_details WHERE DL_NUMBER IN (SELECT DL_NUM FROM booking_details WHERE REG_NUM = '$_GET[id]') AND EMAIL_ID = '$email'";
 		$rs = $conn->query($sel);
@@ -72,7 +73,7 @@
 		$droploc = $rwsdrop['LOCATION_NAME'];
 		$cpd = $rws1['COST_PER_DAY'];
 		$dlnum = $rws['DL_NUMBER'];
-		
+
 
 
 		// Convert the dates to timestamps
@@ -89,25 +90,25 @@
 
 		$total = $rws1['COST_PER_DAY'] * $numDays;
 		$name = $rws['FNAME'] . ' ' . $rws['MNAME'] . ' ' . $rws['LNAME'];
-		$bookid=$rws2['BOOKING_ID'];
+		$bookid = $rws2['BOOKING_ID'];
 		$ftotal = $total * 1.12;
 		?>
 
-		<section class="caption">
+		<section class="caption" style="margin-top: 100px;">
 			<h1 style="text-align: center; font-size:xxx-large;"><span style="font-weight: 100;">Find the Best </span>CarForYou</h1>
 		</section>
 		<section class="wrapper">
 
 
 			<!-- <h1><?php echo $rws['FNAME'] . ' ' . $rws['MNAME'] . ' ' . $rws['LNAME'] ?></h1> -->
-			<h2> <?php echo $name?></h2>
-			
-			
+			<h2> <?php echo $name ?></h2>
+
+
 			<h3><?php echo 'Booking ID: #' . $rws2['BOOKING_ID'] ?></h3>
 
-			<h3><?php echo 'Bill Date:'. $billdate  ?></h3>
+			<h3><?php echo 'Bill Date:' . $billdate  ?></h3>
 
-<!-- 
+			<!-- 
 			<h1><?php echo $rws1['MODEL_NAME'] ?></h1>
 			<h1><?php echo 'From: ' . $rws2['FROM_DT_TIME'] ?></h1>
 			<h1><?php echo 'To: ' . $rws2['RET_DT_TIME'] ?></h1>
@@ -120,7 +121,7 @@
 			<div class="cal">
 
 
-			<table class="invc">
+				<table class="invc">
 					<tr>
 						<th>Model</th>
 						<th>From Date</th>
@@ -169,21 +170,21 @@
 				</table>
 			</div>
 			<form method="post" action="/ev/bill.php?id=<?php echo $rws1['REGISTRATION_NUMBER'] ?>">
-			<input type="submit" value="pay" name="pay" id="idpay"  onclick="func()">
-</form>
-			
+				<input class="but" type="submit" value="pay" name="pay" id="idpay" onclick="func()" style="width: 100px; color: #ededed; background: #49d645;">
+			</form>
+
 			<?php
-			if(isset($_POST['pay'])){
+			if (isset($_POST['pay'])) {
 				$bill = "INSERT INTO billing_details (DL_NUM,`NAME`,BOOKING_ID,BILL_DATE,MODEL_NAME,FROM_DATE,TO_DATE,NO_OF_DAYS,CPD,PICK_LOC,DROP_LOC,GROSS_TOTAL,TOTAL_AMOUNT) VALUES ('$dlnum','$name','$bookid','$billdate','$model','$fromDate','$toDate','$numDays','$cpd','$pickloc','$droploc','$total','$ftotal' ) ";
 				$billc = $conn->query($bill);
-				?>
-									<div class="flash-message">
-										<?php 
-										echo 'Paid Successful';
-										?>
-									</div>
-								<?php
-			} 
+			?>
+				<div class="flash-message">
+					<?php
+					echo 'Payment Successful';
+					?>
+				</div>
+			<?php
+			}
 			?>
 		</section>
 	</section> <!--  end listing section  -->
@@ -194,6 +195,20 @@
 	include 'footer.php';
 	?>
 
-	<h1><?php echo ''.$dlnum ?></h1>
+	<h1><?php echo '' . $dlnum ?></h1>
 </body>
+
+<script>
+	window.onbeforeunload = function() {
+		// Make an AJAX call to a server-side script that runs the SQL trigger
+		$.ajax({
+			type: "POST",
+			url: "runtrigger.php",
+			data: {
+				// any data you need to pass to the server-side script
+			}
+		});
+	};
+</script>
+
 </html>

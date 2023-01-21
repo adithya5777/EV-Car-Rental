@@ -15,14 +15,6 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <style>
-        .flash-message {
-            padding: 20px;
-            background-color: #f44336;
-            color: white;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
         body{
             background-repeat: no-repeat;
             background-size: cover;
@@ -141,7 +133,7 @@
 
                 if ($pwd != $cpwd) {
             ?>
-                    <div class="flash-message">
+                    <div class="flash-message"  style="margin: 40px auto; background: red; width: 250px;">
                         <?php
                         echo "Password doesn't match. Try Again";
                         exit();
@@ -158,7 +150,7 @@
                 } catch (mysqli_sql_exception $e) {
 
                 ?>
-                    <div class="flash-message">
+                    <div class="flash-message"  style="margin: 40px auto; background: red; width: 250px;">
                         <?php echo 'Registration Failed. The Email ID or the DL Number already exists. Try Again'; ?>
                     </div>
                 <?php
@@ -167,18 +159,18 @@
                 }
 
                 if ($ress == TRUE) { ?>
-                    <div class="flash-message">
+                    <div class="flash-message"  style="margin: 40px auto; width: 250px;">
                         <?php echo 'Sign Up Successful';
                         // header('location: account.php');
                         ?>
                     </div>
-                    <div class="flash-message">
+                    <div class="flash-message" style="margin: 5px auto; width: 250px;">
                         <a href="account.php">PROCEED TO LOGIN</a>
                     </div>
                 <?php
                 } else {
                 ?>
-                    <div class="flash-message">
+                    <div class="flash-message" style="margin: 40px auto; background: red; width: 250px;">
                         <?php echo 'Registration Failed. Try Again'; ?>
                     </div>
             <?php

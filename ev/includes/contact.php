@@ -1,4 +1,4 @@
-<?php include 'includes/config.php'; ?>
+<?php  ?>
 <section class="wrapper" id="contact" style="max-width: 1350px;">
     <br><br><br><br><br><br>
     <h1><span style="font-size:xxx-large; font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000); margin-top: 150px;">CONTACT US</span></h1>
@@ -28,7 +28,7 @@
                 </div>
             </form>
             <?php
-					if (isset($_POST['submit1'])) {
+					if (isset($_POST['submit'])) {
 						
 
 						$email = $_POST['Email'];

@@ -575,8 +575,9 @@ header nav .login_btn:hover {
 }
 
 .flash-message {
+    margin: 10px 400px;
     padding: 20px;
-    background-color: #f44336;
+    background-color: #49d645;
     color: white;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -751,4 +752,9 @@ address {
     box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
     transform: translateY(10px);
     transition: 100ms;
+}
+
+.tds {
+    color: #ededed;
+    font-family: 'Quicksand';
 }

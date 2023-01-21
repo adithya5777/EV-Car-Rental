@@ -16,14 +16,6 @@
 	<script type="text/javascript" src="js/main.js"></script>
 
 	<style>
-		.flash-message {
-			padding: 20px;
-			background-color: #f44336;
-			color: white;
-			border-radius: 5px;
-			margin-bottom: 15px;
-		}
-
 		body {
 			background-repeat: no-repeat;
 			background-size: cover;
@@ -112,7 +104,7 @@
 							header('location: index.php?uid=' . $email);
 						} else {
 						?>
-							<div class="flash-message">
+							<div class="flash-message" style="margin: 40px auto; background: red; width: 250px;">
 								<?php echo 'Login Unsuccessful. Please Try Again'; ?>
 							</div>
 					<?php

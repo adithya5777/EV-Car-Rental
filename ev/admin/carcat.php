@@ -15,14 +15,7 @@
     <script type="text/javascript" src="js/main.js"></script>
 
     <style>
-        .flash-message {
-            padding: 20px;
-            background-color: #f44336;
-            color: white;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .tds{
+        .tds {
             color: #ededed;
             font-family: 'Quicksand';
         }
@@ -107,7 +100,7 @@
                 <form method="post" onsubmit="func()" style="margin: 0 auto;">
                     <table>
                         <tr>
-                            <td  class="tds">CATEGORY NAME:</td>
+                            <td class="tds">CATEGORY NAME:</td>
                             <td><input type="test" name="CAT_NAME" required></td>
                         </tr>
                         <tr>
@@ -119,7 +112,10 @@
                             <td><input type="text" name="SEAT" required></td>
                         </tr>
                         <tr>
-                            <td class="tds"><input type="submit" name="save" value="SUBMIT"></td>
+                            <!-- <td class="tds"><input type="submit" name="save" value="SUBMIT"></td> -->
+                            <td colspan="2" style="text-align:center">
+                                <input class="but" type="submit" name="save" value="SUBMIT" style="width: 100px; color: #ededed; background: #49c5b6;">
+                            </td>
                         </tr>
                     </table>
                 </form>

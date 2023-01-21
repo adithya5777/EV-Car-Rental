@@ -101,10 +101,13 @@
 		label {
 			color: #171717;
 		}
+		.cal{
+			flex-direction: column;
+		}
 	</style>
 </head>
 
-<body>
+<body class="hide">
 
 	<section>
 		<?php
@@ -283,7 +286,7 @@
 							<option> Pick Up Location </option>
 							<?php
 							while ($pkl = $pick->fetch_assoc()) { ?>
-								<option><?php echo $pkl['LOCATION_NAME'] ?></option>
+								<option style="color: #171717;"><?php echo $pkl['LOCATION_NAME'] ?></option>
 							<?php }
 							?>
 						</select>
@@ -292,7 +295,7 @@
 							<option> Drop Off Location </option>
 							<?php
 							while ($dpl = $drop->fetch_assoc()) { ?>
-								<option><?php echo $dpl['LOCATION_NAME'] ?></option>
+								<option style="color: #171717;"><?php echo $dpl['LOCATION_NAME'] ?></option>
 							<?php }
 							?>
 						</select>
@@ -323,7 +326,7 @@
 								$ckr = $cks->fetch_assoc();
 								if ($ckr['cnt'] > 0) {
 					?>
-							<div class="flash-message">
+							<div class="flash-message" style="background-color: red">
 								<?php
 									echo 'This Car is already booked form day ' . $ckr['FROM_DT_TIME'] . ' to ' . $ckr['RET_DT_TIME'];
 								?>
@@ -353,7 +356,7 @@
 								<?php
 										} else {
 								?>
-									<div class="flash-message">
+									<div class="flash-message" style="background-color: red">
 										<?php
 											echo 'Invalid Date, Please try again';
 										?>
