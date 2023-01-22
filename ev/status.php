@@ -58,16 +58,15 @@
     </style>
 </head>
 
-<body>
+<body class="hide">
     <section class="">
         <?php
         include 'header.php'; ?>
-    </section><!--  end hero section  -->
+    </section>
     <?php include 'includes/config.php'; ?>
     <section class="caption" style="margin-top:100px">
         <br>
         <h1><span style="font-size:xxx-large; font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find the Best</span><span style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"> CarForYou</span></h1>
-        <!-- <h1 id="motto" style="text-align: center; font-size:xxx-large; color: #49c5b6; filter: drop-shadow(0px 0px 15px #49C5B6);"><span style="font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000);">Find the Best </span>CarForYou</h1> -->
     </section>
 
     <?php
@@ -81,13 +80,9 @@
     $view2 = "SELECT * FROM billing_details WHERE DL_NUM='$dlnum'";
     $v2 = $conn->query($view2);
     $try = $v2->num_rows;
-    $date = date('y-m-d', strtotime("+1 day"));
-    // $date = date('y-m-d');
+    $date = date('Y-m-d');
     if ($try > 0) {
-        // $vw2 = $v2->fetch_assoc();
-
         while ($vw2 = $v2->fetch_assoc()) {
-
             $bookid = $vw2['BOOKING_ID'];
             $billdate = $vw2['BILL_DATE'];
             $model = $vw2['MODEL_NAME'];
@@ -99,7 +94,6 @@
             $droploc = $vw2['DROP_LOC'];
             $gross = $vw2['GROSS_TOTAL'];
             $total = $vw2['TOTAL_AMOUNT'];
-
     ?>
             <h2 class="bookdet"><?php echo 'Booking ID: #' . $bookid ?></h2>
             <h2 class="bookdet"><?php echo 'Bill Date: ' . $billdate  ?></h2>

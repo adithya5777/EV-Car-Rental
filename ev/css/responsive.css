@@ -439,7 +439,7 @@
         position: relative;
         float: left;
         margin: 0 3.636363636363636% 3.636363636363636% 0;
-        background-color: #5affec51;
+        background: #5affec51;
     }
     
     .listings ul.properties_list li img.property_img {
