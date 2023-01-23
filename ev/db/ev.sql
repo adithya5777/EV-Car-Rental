@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2023 at 09:18 AM
+-- Generation Time: Jan 23, 2023 at 01:09 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -73,19 +73,19 @@ INSERT INTO `billing_details` (`BILL_ID`, `DL_NUM`, `NAME`, `BOOKING_ID`, `BILL_
 (56, '123KA55', 'Adithya P Patel', 68, '2023-01-11', 'I4', '2023-01-11', '2023-01-13', 3, 2500, 'VIDHANA SOUDHA', 'MALL OF MYSORE', 7500, 8400),
 (60, '123KA55', 'Adithya P Patel', 72, '2023-01-20', 'TAYCAN', '2023-01-21', '2023-01-22', 2, 3000, 'Mane', 'Mane', 6000, 6720),
 (61, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(62, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(63, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(64, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(65, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(66, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(67, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(68, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(69, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(70, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(71, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(72, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
-(73, 'SAAKA55', 'Saathvik M V', 86, '2023-01-21', 'NEXON EV', '2023-01-21', '2023-01-23', 3, 2000, 'MYSORE TARPAULINS', 'MYSORE TARPAULINS', 6000, 6720),
 (74, '99999', 'adi p patel', 87, '2023-01-21', 'BENZ EQS', '2023-01-21', '2023-01-22', 2, 2500, 'VIDHANA SOUDHA', 'MYSORE TARPAULINS', 5000, 5600);
+
+--
+-- Triggers `billing_details`
+--
+DELIMITER $$
+CREATE TRIGGER `delete_duplicate_booking` AFTER INSERT ON `billing_details` FOR EACH ROW BEGIN
+    DELETE FROM billing_details
+    WHERE BOOKING_ID = NEW.BOOKING_ID
+    AND ID NOT IN (SELECT MIN(ID) FROM billing_details GROUP BY BOOKING_ID);
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -155,6 +155,16 @@ INSERT INTO `car` (`car_id`, `REGISTRATION_NUMBER`, `MODEL_NAME`, `MAKE`, `MODEL
 (10, '22BH001', 'EV 6', 'KIA', 2022, 700, 'HATCHBACK', 1500, 'Y', 'The Kia EV6 is an all-electric crossover SUV that features a long driving range, quick acceleration, and a variety of advanced features. It is available in two different battery sizes and is powered by either a single or dual electric motor. The EV6 also includes a variety of advanced driver assistance systems and connectivity features, such as a high-resolution touch screen display and over-the-air software updates.\r\n', 'kiaev6.jpg'),
 (11, '22BH007', 'BENZ EQS', 'MERCEDES', 2022, 850, 'SEDAN', 2500, 'Y', 'The Mercedes-Benz EQS is an all-electric luxury sedan produced by Mercedes-Benz. It was unveiled in April 2021 and is based on the brand\'s new Electric Vehicle Architecture (EVA). The EQS is available in two different battery sizes: a standard 90 kWh battery pack and a long-range 107.8 kWh battery pack. It is powered by a single electric motor that produces up to 516 horsepower and has a 0-60 mph acceleration time of just 4.3 seconds. The EQS also features a variety of advanced driver assistance systems and connectivity features, such as a high-resolution touch screen display and over-the-air software updates. Overall, the Mercedes-Benz EQS is a high-performance, all-electric luxury sedan that offers quick acceleration and a variety of advanced features.\r\n', 'mercedeseqs.png'),
 (12, '22BH008', 'E-TRON GT', 'AUDI', 2022, 400, 'SPORTS', 3000, 'Y', 'The Audi e-tron GT is an electric sports sedan that was introduced in 2021. It is available in two trims: the e-tron GT and the RS e-tron GT. The e-tron GT is powered by two electric motors that produce a combined output of 469 horsepower and 464 pound-feet of torque, and it has a range of up to 238 miles on a single charge. The RS e-tron GT is even more powerful, with a combined output of 590 horsepower and 612 pound-feet of torque, and a slightly shorter range of up to 232 miles. Both trims come with a 93.4-kWh battery pack and a 350-kW fast-charging system, which allows for rapid charging at compatible charging stations.\r\n', 'audi.png');
+
+--
+-- Triggers `car`
+--
+DELIMITER $$
+CREATE TRIGGER `delete_car_id_0` AFTER INSERT ON `car` FOR EACH ROW BEGIN
+    DELETE FROM car WHERE car_id = 0;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -352,21 +362,6 @@ ALTER TABLE `contact`
 --
 ALTER TABLE `billing_details`
   ADD CONSTRAINT `BILLINGFK1` FOREIGN KEY (`BOOKING_ID`) REFERENCES `booking_details` (`BOOKING_ID`);
-
---
--- Constraints for table `booking_details`
---
-ALTER TABLE `booking_details`
-  ADD CONSTRAINT `BOOKINGFK1` FOREIGN KEY (`PICKUP_LOC`) REFERENCES `location_details` (`LOCATION_ID`),
-  ADD CONSTRAINT `BOOKINGFK2` FOREIGN KEY (`DROP_LOC`) REFERENCES `location_details` (`LOCATION_ID`),
-  ADD CONSTRAINT `BOOKINGFK3` FOREIGN KEY (`REG_NUM`) REFERENCES `car` (`REGISTRATION_NUMBER`),
-  ADD CONSTRAINT `BOOKINGFK4` FOREIGN KEY (`DL_NUM`) REFERENCES `customer_details` (`DL_NUMBER`);
-
---
--- Constraints for table `car`
---
-ALTER TABLE `car`
-  ADD CONSTRAINT `CARFK1` FOREIGN KEY (`CAR_CATEGORY_NAME`) REFERENCES `car_category` (`CATEGORY_NAME`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

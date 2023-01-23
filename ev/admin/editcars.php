@@ -31,6 +31,23 @@
 
         $car = "SELECT * FROM car";
         $car1 = $conn->query($car);
+
+        $tot = "SELECT MODEL_NAME, total_amount, car_id
+        FROM
+        (
+            SELECT c.MODEL_NAME, IFNULL(b.total_amount, 0) as total_amount, c.car_id,
+            ROW_NUMBER() OVER (ORDER BY c.car_id) as row_num
+            FROM car c
+            LEFT JOIN (SELECT MODEL_NAME, SUM(TOTAL_AMOUNT) as total_amount
+                        FROM billing_details
+                        GROUP BY MODEL_NAME) b
+            ON b.MODEL_NAME = c.MODEL_NAME
+        ) sub
+        WHERE row_num >= 1
+        ORDER BY row_num
+        ";
+        $totconn = $conn -> query($tot);
+        
         ?>
         <div class="cal" style="margin-top: 100px;">
             <table class="invc">
@@ -68,10 +85,13 @@
                     <td>
                         <h3>IMAGE</h3>
                     </td>
+                    <td>
+                        <h3>TOTAL AMOUNT</h3>
+                    </td>
                 </tr>
 
                 <?php
-                while ($carw1 = $car1->fetch_assoc()) { ?>
+                while ($carw1 = $car1->fetch_assoc() and $totop = $totconn->fetch_assoc()) { ?>
 
                     <tr>
                         <td><?php echo $carw1['car_id'] ?></td>
@@ -85,6 +105,7 @@
                         <td><?php echo $carw1['AVAILABILITY_FLAG'] ?></td>
                         <td><?php echo $carw1['CAR_DESCRIPTION'] ?></td>
                         <td><?php echo $carw1['image'] ?></td>
+                        <td><?php echo $totop['total_amount'] ?></td>
                     </tr>
 
                 <?php }
