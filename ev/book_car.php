@@ -101,7 +101,8 @@
 		label {
 			color: #171717;
 		}
-		.cal{
+
+		.cal {
 			flex-direction: column;
 		}
 	</style>
@@ -273,14 +274,8 @@
 
 
 						</div>
-						<!-- <label for="from-date">From:</label>
-						<br>
-						<input type="date" id="from-date" name="from-date" min="<?= date('Y-m-d') ?>" required>
-						<label for="to-date">To:</label>
-						<input type="date" id="to-date" name="to-date" min="<?= date('Y-m-d') ?>" required><br><br> -->
 
 
-						<!-- <label>Pick Up Location:</label> -->
 						<select name="Pick_Up" required>
 
 							<option> Pick Up Location </option>

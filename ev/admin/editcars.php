@@ -19,10 +19,13 @@
             color: #ededed;
             font-family: 'Quicksand';
         }
+        .invc td{
+            padding: 2px;
+        }
     </style>
 </head>
 
-<body>
+<body class="hide">
 
     <section class="">
         <?php
@@ -32,7 +35,7 @@
         $car = "SELECT * FROM car";
         $car1 = $conn->query($car);
 
-        $tot = "SELECT MODEL_NAME, total_amount, car_id
+        $tot = "SELECT sub.MODEL_NAME, sub.total_amount, sub.car_id, COUNT(bd.MODEL_NAME) as count
         FROM
         (
             SELECT c.MODEL_NAME, IFNULL(b.total_amount, 0) as total_amount, c.car_id,
@@ -43,13 +46,16 @@
                         GROUP BY MODEL_NAME) b
             ON b.MODEL_NAME = c.MODEL_NAME
         ) sub
+        LEFT JOIN car c on c.MODEL_NAME=sub.MODEL_NAME
+        LEFT JOIN billing_details bd on bd.MODEL_NAME=sub.MODEL_NAME
         WHERE row_num >= 1
-        ORDER BY row_num
+        GROUP BY sub.MODEL_NAME
+        ORDER BY row_num;
         ";
-        $totconn = $conn -> query($tot);
-        
+        $totconn = $conn->query($tot);
+
         ?>
-        <div class="cal" style="margin-top: 100px;">
+        <div class="cal" style="margin-top: 100px; width: 100vw;">
             <table class="invc">
                 <tr>
                     <td>
@@ -88,6 +94,9 @@
                     <td>
                         <h3>TOTAL AMOUNT</h3>
                     </td>
+                    <td>
+                        <h3>TOTAL BOOKINGS</h3>
+                    </td>
                 </tr>
 
                 <?php
@@ -105,7 +114,8 @@
                         <td><?php echo $carw1['AVAILABILITY_FLAG'] ?></td>
                         <td><?php echo $carw1['CAR_DESCRIPTION'] ?></td>
                         <td><?php echo $carw1['image'] ?></td>
-                        <td><?php echo $totop['total_amount'] ?></td>
+                        <td>₹<?php echo $totop['total_amount'] ?></td>
+                        <td><?php echo $totop['count'] ?></td>
                     </tr>
 
                 <?php }

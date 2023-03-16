@@ -17,7 +17,6 @@
 
 	<link rel="shortcut icon" href="/ev/assets/favicon_io/favicon.ico" type="image/x-icon">
 
-	<link rel="shortcut icon" href="/assets/logofinal.png" type="">
 
 	<style>
 		header {

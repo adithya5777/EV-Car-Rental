@@ -63,7 +63,7 @@ session_start();
 			width: 300px;
 			height: 35px;
 			background: rgba(186, 186, 186, 0.502);
-			margin: 20px auto;
+			margin: 18px auto;
 			display: grid;
 			place-items: center;
 		}
@@ -85,17 +85,32 @@ session_start();
 			text-shadow: 0px 0px 15px rgba(73, 197, 182, 1);
 			/* filter: drop-shadow(0px 0px 15px #49c5b6); */
 		}
+
+		.cntform {
+			grid-template-columns: 50% 50%;
+		}
+		table {
+			font-family: 'Quicksand';
+			font-size: 30px;
+			color: #ededed;
+			width: 100%;
+			border-radius: 20px;
+			border: 0.5px solid black;
+		}
+		 table td{
+			padding: 20px;
+			outline: 1px solid #49c5b6;
+		}
 	</style>
 </head>
 
 <body>
 
 
-	<section classs="cntform">
+	<div classs="">
 		<div class="wrapper" style="width: 400px">
 			<!-- <h1><span style="font-size:xxx-large; font-weight: 100; color: #ededed; filter: drop-shadow(0px 0px 1px #000); margin-top: 150px;">CONTACT US</span></h1> -->
-			<h1 class="logo" style="color: #ededed;"><img id="logoimg"
-					src="/ev/assets/favicon_io/android-chrome-512x512.png" alt="logo" width="37" height="37"> CarForYou
+			<h1 class="logo" style="color: #ededed;"><img id="logoimg" src="/ev/assets/favicon_io/android-chrome-512x512.png" alt="logo" width="37" height="37"> CarForYou
 			</h1>
 			<br>
 		</div>
@@ -105,54 +120,55 @@ session_start();
 		$grossconn = $conn->query($gross);
 		$grosstot = $grossconn->fetch_assoc();
 		?>
-		<div class="wrapper listing">
-			<!-- <?php echo $_SESSION['email'] . $_SESSION['pass'] ?> -->
-			<nav>
-				<?php
-
-				// if(!($_SESSION['email']) && (!($_SESSION['pass']))){
-				if (isset($_SESSION['email']) || isset($_SESSION['pass'])) {
-					?>
-					<ul>
-						<div class="anchors"><a href="main.php">Home</a></div>
-						<div class="anchors"><a href="editcars.php">Cars</a></div>
-						<div class="anchors"><a href="carcat.php">Car Category</a></div>
-						<div class="anchors"><a href="editloc.php">Location</a></div>
-						<div class="anchors"><a href="showbill.php">Bills</a></div>
-						<div class="anchors"><a href="showbook.php">Bookings</a></div>
-						<div class="anchors"><a href="contact.php">Messages</a></div>
-						<div class="anchors"><a href="logout.php">Logout</a></div>
-
-					</ul>
-				</nav>
-			</div>
+		<div class="wrapper cntform">
 			<div class="wrapper listing">
+				<!-- <?php echo $_SESSION['email'] . $_SESSION['pass'] ?> -->
 				<nav>
-					<ul>
-						<div class="anchors">GROSS TOTAL:
-							<?php echo $grosstot['GROSS_TOTAL']; ?>
-						</div>
-						<div class="anchors">GROSS TOTAL:
-							<?php echo $grosstot['TOTAL_AMOUNT']; ?>
-						</div>
-					</ul>
+					<?php
+
+					// if(!($_SESSION['email']) && (!($_SESSION['pass']))){
+					if (isset($_SESSION['email']) || isset($_SESSION['pass'])) {
+					?>
+						<ul>
+							<div class="anchors"><a href="main.php">Home</a></div>
+							<div class="anchors"><a href="editcars.php">Cars</a></div>
+							<div class="anchors"><a href="carcat.php">Car Category</a></div>
+							<div class="anchors"><a href="editloc.php">Location</a></div>
+							<div class="anchors"><a href="showbill.php">Bills</a></div>
+							<div class="anchors"><a href="showbook.php">Bookings</a></div>
+							<div class="anchors"><a href="contact.php">Messages</a></div>
+							<div class="anchors"><a href="logout.php">Logout</a></div>
+
+						</ul>
 				</nav>
 			</div>
+			<div class="wrapper listing" style="margin-right: 20px;">
+				<table>
+					<tr>
+						<td colspan="2" style="text-shadow: 0px 0px 15px #49c5b6; color:#49c5b6; font-family:'Good Times'; border-radius: 10px 10px 0 0;">Revenue</td>
+					</tr>
+					<tr>
+						<td>GROSS REVENUE:</td>
+						<td>₹<?php echo $grosstot['GROSS_TOTAL']; ?></td>
+					</tr>
+					<tr>
+						<td style="border-radius: 0 0 0 10px;">TOTAL REVENUE:</td>
+						<td style="border-radius: 0 0 10px 0;">₹<?php echo $grosstot['TOTAL_AMOUNT']; ?></td>
+					</tr>
+				</table>
+			</div>
+		</div>
 
-			<?php
-				}
-				// include 'header.php';
-				include 'config.php';
-				echo 'Hello';
 
-				?>
-
-		<!-- <section class="caption">
-			<h2 class="caption" style="text-align: center">Find You Dream Cars For Hire</h2>
-		</section> -->
+	<?php
+					}
+					include 'config.php';
+	?>
 
 
-	</section>
+
+
+	</div>
 
 </body>
 

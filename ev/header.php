@@ -90,8 +90,8 @@ session_start();
 				<ul>
 					<li><a href="index.php">Home</a></li>
 					<li><a href="rentcars.php">Rent Cars</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<!-- <li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li> -->
 					<li><a href="account.php">Login</a></li>
 				</ul>
 
