@@ -65,6 +65,8 @@ CREATE TABLE `billing_details` (
 --
 -- Dumping data for table `billing_details`
 --
+--
+--
 
 INSERT INTO `billing_details` (`BILL_ID`, `DL_NUM`, `NAME`, `BOOKING_ID`, `BILL_DATE`, `MODEL_NAME`, `FROM_DATE`, `TO_DATE`, `NO_OF_DAYS`, `CPD`, `PICK_LOC`, `DROP_LOC`, `GROSS_TOTAL`, `TOTAL_AMOUNT`) VALUES
 (22, 'SAAKA55', 'Saathvik M V', 35, '2022-12-31', 'BENZ EQS', '2022-12-31', '2023-01-02', 3, 2500, 'MALL OF MYSORE', 'MYSORE TARPAULINS', 7500, 8400),
